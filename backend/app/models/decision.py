@@ -46,3 +46,28 @@ class AnalyzeResponse(BaseModel):
     decision: TradingDecision = Field(..., description="BUY, SELL, or HOLD.")
     confidence: float = Field(..., ge=0.0, le=1.0, description="Decision confidence.")
     reasoning: str = Field(..., min_length=5, description="Human-readable explanation.")
+    portfolio: dict[str, float] = Field(
+        ...,
+        description=(
+            "Portfolio summary including cash balance, asset amount for the analyzed "
+            "coin, and total portfolio value."
+        ),
+    )
+    indicators: dict[str, float] = Field(
+        ...,
+        description="Technical indicators used for analysis (RSI and MA20).",
+    )
+
+
+class AgentProfileResponse(BaseModel):
+    """Response model for agent identity and reputation profile."""
+
+    agent_id: str = Field(..., description="Stable identifier for the trading agent.")
+    strategy: str = Field(..., description="High-level strategy description.")
+    created_at: str = Field(..., description="ISO 8601 creation timestamp.")
+    total_trades: int = Field(..., ge=0, description="Total recorded trades.")
+    wins: int = Field(..., ge=0, description="Number of winning trades.")
+    losses: int = Field(..., ge=0, description="Number of losing trades.")
+    reputation_score: float = Field(
+        ..., ge=0.0, le=1.0, description="Wins divided by total trades."
+    )

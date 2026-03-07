@@ -65,6 +65,7 @@ ollama pull llama3
 
 - `GET /health`
 - `GET /market/price/{coin}`
+- `GET /agent/profile`
 - `POST /agent/analyze`
 
 ## Market Endpoint (CoinGecko)
@@ -110,6 +111,15 @@ If the coin id is invalid, the API returns `404`.
   "asset": "bitcoin",
   "decision": "BUY",
   "confidence": 0.71,
-  "reasoning": "Price dipped with moderate volatility suggesting a possible rebound."
+  "reasoning": "Price dipped with moderate volatility suggesting a possible rebound.",
+  "portfolio": {
+    "cash_balance": 9000,
+    "bitcoin": 0.015,
+    "portfolio_value": 10020
+  },
+  "indicators": {
+    "rsi": 28,
+    "ma20": 62000
+  }
 }
 ```
