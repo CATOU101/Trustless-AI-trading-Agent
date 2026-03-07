@@ -1,5 +1,6 @@
 """Market service for retrieving cryptocurrency data from CoinGecko."""
 
+import asyncio
 from typing import TypedDict
 
 import httpx
@@ -48,6 +49,7 @@ class MarketService:
         }
         chart_params = {"vs_currency": "usd", "days": 30, "interval": "daily"}
 
+        await asyncio.sleep(1)
         async with httpx.AsyncClient(timeout=10.0) as client:
             price_response = await client.get(self._simple_price_url, params=params)
             price_response.raise_for_status()

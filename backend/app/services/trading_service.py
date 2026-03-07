@@ -1,8 +1,10 @@
 """Capital sandbox service for in-memory portfolio simulation."""
 
+from datetime import UTC, datetime
 from typing import TypedDict
 
 from app.services.reputation_service import reputation_service
+
 
 class PortfolioState(TypedDict):
     """Current portfolio state."""
@@ -19,6 +21,19 @@ class PortfolioValue(TypedDict):
     portfolio_value: float
 
 
+class TradeRecord(TypedDict):
+    """Recorded simulated trade transaction."""
+
+    timestamp: str
+    asset: str
+    decision: str
+    price: float
+    confidence: float
+    cash_balance: float
+    asset_holdings: float
+    portfolio_value: float
+
+
 class TradingService:
     """Service for virtual trade execution and portfolio valuation."""
 
@@ -28,6 +43,7 @@ class TradingService:
             "cash_balance": 10000.0,
             "assets": {"bitcoin": 0.0},
         }
+        self._trade_history: list[TradeRecord] = []
 
     def get_portfolio(self) -> PortfolioState:
         """Return the current in-memory portfolio state."""
@@ -36,7 +52,9 @@ class TradingService:
             "assets": dict(self._portfolio["assets"]),
         }
 
-    def execute_trade(self, asset: str, decision: str, price: float) -> PortfolioState:
+    def execute_trade(
+        self, asset: str, decision: str, price: float, confidence: float = 0.0
+    ) -> PortfolioState:
         """Execute a virtual trade based on the decision signal.
 
         Rules:
@@ -74,6 +92,19 @@ class TradingService:
             post_trade_total = self.calculate_portfolio_value(
                 asset=normalized_asset, price=price
             )["portfolio_value"]
+            snapshot = self.calculate_portfolio_value(asset=normalized_asset, price=price)
+            self._trade_history.append(
+                {
+                    "timestamp": datetime.now(UTC).isoformat(),
+                    "asset": normalized_asset,
+                    "decision": normalized_decision,
+                    "price": round(price, 6),
+                    "confidence": round(confidence, 4),
+                    "cash_balance": snapshot["cash_balance"],
+                    "asset_holdings": snapshot["asset_holdings"],
+                    "portfolio_value": snapshot["portfolio_value"],
+                }
+            )
             if post_trade_total > pre_trade_total:
                 reputation_service.record_trade("WIN")
             elif post_trade_total < pre_trade_total:
@@ -98,6 +129,10 @@ class TradingService:
             "asset_holdings": round(holdings, 10),
             "portfolio_value": round(cash_balance + asset_value, 6),
         }
+
+    def get_trade_history(self) -> list[TradeRecord]:
+        """Return trade history in reverse chronological order."""
+        return list(reversed(self._trade_history))
 
 
 trading_service = TradingService()

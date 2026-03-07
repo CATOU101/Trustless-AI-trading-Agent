@@ -66,6 +66,9 @@ ollama pull llama3
 - `GET /health`
 - `GET /market/price/{coin}`
 - `GET /agent/profile`
+- `GET /backtest/{coin}`
+- `GET /portfolio`
+- `GET /trades`
 - `POST /agent/analyze`
 
 ## Market Endpoint (CoinGecko)

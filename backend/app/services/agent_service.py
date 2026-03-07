@@ -56,39 +56,31 @@ class AgentService:
             OllamaUnavailableError: If Ollama is unreachable.
             httpx.HTTPError: If Ollama returns an error status.
         """
+        decision = self._deterministic_decision(
+            asset_holdings=asset_holdings,
+            rsi=rsi,
+            price=price,
+            ma20=ma20,
+        )
+
+        print(f"Analyzing coin: {asset}")
+        print(f"Price: {price} | Change: {change_24h}")
+
         prompt = (
-            "You are an AI quantitative crypto trading analyst working in a simulated "
-            "trading environment.\n\n"
-            "Your job is to analyze market data and recommend a trading action.\n\n"
-            "You are NOT giving financial advice.\n"
-            "You are executing an automated trading strategy.\n\n"
+            "You are an AI trading analyst explaining a trading decision.\n\n"
             "Market Data:\n"
             f"Asset: {asset}\n"
             f"Price: {price}\n"
-            f"24h Change: {change_24h} %\n\n"
-            "Market Indicators:\n"
             f"RSI: {rsi}\n"
-            f"20-day Moving Average: {ma20}\n\n"
-            "Portfolio State:\n"
-            f"Cash Balance: {cash_balance}\n"
-            f"Asset Holdings: {asset_holdings}\n\n"
-            "Trading Strategy Rules:\n"
-            "1. If price dropped more than 4% in 24h -> BUY (dip buying opportunity)\n"
-            "2. If price increased more than 4% -> SELL (profit taking)\n"
-            "3. If price change is between -4% and +4% -> HOLD\n"
-            "4. If portfolio already holds a large position -> avoid BUY\n"
-            "5. If market signals are unclear -> HOLD\n\n"
-            "Indicator Rules:\n"
-            "1. If RSI < 30, market is oversold -> consider BUY\n"
-            "2. If RSI > 70, market is overbought -> consider SELL\n"
-            "3. If price > moving average, trend is bullish\n"
-            "4. If price < moving average, trend is bearish\n\n"
-            "Return ONLY valid JSON in this format:\n\n"
+            f"Moving Average: {ma20}\n\n"
+            "Trading Decision:\n"
+            f"{decision}\n\n"
+            "Explain why this decision is reasonable.\n\n"
+            "Return JSON:\n\n"
             "{\n"
-            '  "decision": "BUY | SELL | HOLD",\n'
+            f'  "decision": "{decision}",\n'
             '  "confidence": 0.0-1.0,\n'
-            '  "reasoning": "short explanation referencing price movement and '
-            'portfolio risk"\n'
+            '  "reasoning": "technical explanation"\n'
             "}\n"
         )
 
@@ -103,14 +95,29 @@ class AgentService:
                 "Ollama is not reachable at http://localhost:11434. "
                 "Ensure the Ollama server is running."
             ) from exc
+        except httpx.HTTPStatusError:
+            return self._fallback_decision(asset, "fallback decision due to ollama api error")
 
-        result = response.json()
+        try:
+            result = response.json()
+        except ValueError:
+            return self._fallback_decision(
+                asset, "fallback decision due to malformed ollama response"
+            )
+
         raw_text = result.get("response", "")
+        if not isinstance(raw_text, str) or not raw_text.strip():
+            return self._fallback_decision(asset, decision)
+
         parsed = self._parse_json_response(raw_text)
-        decision = self._validate_decision(asset=asset, parsed=parsed)
-        if decision is None:
-            return self._fallback_decision(asset)
-        return decision
+        explained = self._validate_explanation(
+            asset=asset,
+            expected_decision=decision,
+            parsed=parsed,
+        )
+        if explained is None:
+            return self._fallback_decision(asset, decision)
+        return explained
 
     def _parse_json_response(self, raw_text: str) -> dict[str, object] | None:
         """Extract and parse JSON object from model text output."""
@@ -129,14 +136,16 @@ class AgentService:
                     return None
             return None
 
-    def _validate_decision(
-        self, asset: str, parsed: dict[str, object] | None
+    def _validate_explanation(
+        self,
+        asset: str,
+        expected_decision: TradingDecision,
+        parsed: dict[str, object] | None,
     ) -> AgentDecision | None:
-        """Validate parsed model output and normalize into decision payload."""
+        """Validate parsed model output and normalize into explanation payload."""
         if not parsed:
             return None
 
-        decision_raw = str(parsed.get("decision", "")).upper().strip()
         reasoning = str(parsed.get("reasoning", "")).strip()
 
         try:
@@ -144,8 +153,6 @@ class AgentService:
         except (TypeError, ValueError):
             return None
 
-        if decision_raw not in TradingDecision.__members__:
-            return None
         if not 0.0 <= confidence <= 1.0:
             return None
         if not reasoning:
@@ -153,19 +160,37 @@ class AgentService:
 
         return {
             "asset": asset,
-            "decision": TradingDecision[decision_raw],
+            "decision": expected_decision,
             "confidence": confidence,
             "reasoning": reasoning,
         }
 
-    def _fallback_decision(self, asset: str) -> AgentDecision:
-        """Return deterministic fallback decision when parsing/validation fails."""
+    def _fallback_decision(self, asset: str, decision: TradingDecision) -> AgentDecision:
+        """Return deterministic fallback explanation when parsing fails."""
         return {
             "asset": asset,
-            "decision": TradingDecision.HOLD,
+            "decision": decision,
             "confidence": 0.5,
             "reasoning": "fallback decision due to parsing error",
         }
+
+    def _deterministic_decision(
+        self, asset_holdings: float, rsi: float, price: float, ma20: float
+    ) -> TradingDecision:
+        """Compute deterministic trading action from indicators and exposure limits."""
+        if rsi < 30:
+            decision = TradingDecision.BUY
+        elif rsi > 70:
+            decision = TradingDecision.SELL
+        elif price > ma20:
+            decision = TradingDecision.HOLD
+        else:
+            decision = TradingDecision.HOLD
+
+        if asset_holdings > 10:
+            decision = TradingDecision.HOLD
+
+        return decision
 
 
 agent_service = AgentService()

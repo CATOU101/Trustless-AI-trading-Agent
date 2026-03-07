@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import PortfolioCard from "./components/PortfolioCard";
 import DecisionCard from "./components/DecisionCard";
 import IndicatorsCard from "./components/IndicatorsCard";
@@ -12,10 +12,13 @@ export default function App() {
   const [decisionData, setDecisionData] = useState(null);
   const [portfolioData, setPortfolioData] = useState(null);
   const [tradeHistory, setTradeHistory] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const requestInFlightRef = useRef(false);
 
   const refreshDashboard = useCallback(async () => {
+    if (requestInFlightRef.current) return;
+    requestInFlightRef.current = true;
     setLoading(true);
     setError("");
 
@@ -27,7 +30,7 @@ export default function App() {
       ]);
 
       setDecisionData(decision);
-      setPortfolioData(portfolio || decision?.portfolio || null);
+      setPortfolioData(decision?.portfolio || portfolio || null);
 
       const fallbackTrade = {
         timestamp: new Date().toISOString(),
@@ -40,13 +43,14 @@ export default function App() {
     } catch (err) {
       setError(err.message || "Failed to fetch dashboard data.");
     } finally {
+      requestInFlightRef.current = false;
       setLoading(false);
     }
   }, [coin]);
 
   useEffect(() => {
     refreshDashboard();
-    const intervalId = setInterval(refreshDashboard, 10000);
+    const intervalId = setInterval(refreshDashboard, 60000);
     return () => clearInterval(intervalId);
   }, [refreshDashboard]);
 
