@@ -76,6 +76,10 @@ class AgentService:
             "Trading Decision:\n"
             f"{decision}\n\n"
             "Explain why this decision is reasonable.\n\n"
+            "Output constraints:\n"
+            "1. Return ONLY one valid JSON object.\n"
+            "2. Do not include markdown, code fences, commentary, or extra text.\n"
+            "3. Do not add fields outside the schema.\n\n"
             "Return JSON:\n\n"
             "{\n"
             f'  "decision": "{decision}",\n'
