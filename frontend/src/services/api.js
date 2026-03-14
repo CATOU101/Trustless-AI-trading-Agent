@@ -24,7 +24,34 @@ export async function getAgentDecision(coin) {
   return parseResponse(response);
 }
 
+export async function getLatestDecision(asset = "bitcoin") {
+  const response = await fetch(`${BASE_URL}/agent/decision`);
+  if (response.ok) {
+    return parseResponse(response);
+  }
+  return getAgentDecision(asset);
+}
+
 export async function getTradeHistory() {
   const response = await fetch(`${BASE_URL}/trades`);
+  return parseResponse(response);
+}
+
+export async function getAgentLeaderboard() {
+  const response = await fetch(`${BASE_URL}/agents/leaderboard`);
+  return parseResponse(response);
+}
+
+export async function getAgentVotes(coin) {
+  const response = await fetch(
+    `${BASE_URL}/agents/decisions?coin=${encodeURIComponent(coin)}`
+  );
+  return parseResponse(response);
+}
+
+export async function getMarketData(asset) {
+  const response = await fetch(
+    `${BASE_URL}/market/price/${encodeURIComponent(asset)}`
+  );
   return parseResponse(response);
 }

@@ -37,8 +37,9 @@ class AgentService:
         ma20: float,
         cash_balance: float,
         asset_holdings: float,
+        decision: TradingDecision | None = None,
     ) -> AgentDecision:
-        """Generate an explainable decision using a local Ollama model.
+        """Generate deterministic confidence and an LLM explanation for a decision.
 
         Args:
             asset: CoinGecko asset id.
@@ -56,72 +57,63 @@ class AgentService:
             OllamaUnavailableError: If Ollama is unreachable.
             httpx.HTTPError: If Ollama returns an error status.
         """
-        decision = self._deterministic_decision(
+        resolved_decision = decision or self._deterministic_decision(
             asset_holdings=asset_holdings,
             rsi=rsi,
             price=price,
             ma20=ma20,
         )
 
-        print(f"Analyzing coin: {asset}")
+        print(f"Analyzing: {asset}")
         print(f"Price: {price} | Change: {change_24h}")
-
-        prompt = (
-            "You are an AI trading analyst explaining a trading decision.\n\n"
-            "Market Data:\n"
-            f"Asset: {asset}\n"
-            f"Price: {price}\n"
-            f"RSI: {rsi}\n"
-            f"Moving Average: {ma20}\n\n"
-            "Trading Decision:\n"
-            f"{decision}\n\n"
-            "Explain why this decision is reasonable.\n\n"
-            "Output constraints:\n"
-            "1. Return ONLY one valid JSON object.\n"
-            "2. Do not include markdown, code fences, commentary, or extra text.\n"
-            "3. Do not add fields outside the schema.\n\n"
-            "Return JSON:\n\n"
-            "{\n"
-            f'  "decision": "{decision}",\n'
-            '  "confidence": 0.0-1.0,\n'
-            '  "reasoning": "technical explanation"\n'
-            "}\n"
+        confidence = self._compute_confidence(
+            action=resolved_decision,
+            rsi=rsi,
+            price=price,
+            ma20=ma20,
         )
+        reasoning = await self.generate_explanation(
+            asset=asset,
+            action=resolved_decision,
+            indicators={"rsi": rsi, "ma20": ma20},
+        )
+        return {
+            "asset": asset,
+            "decision": resolved_decision,
+            "confidence": confidence,
+            "reasoning": reasoning,
+        }
 
+    async def generate_explanation(
+        self,
+        asset: str,
+        action: TradingDecision,
+        indicators: dict[str, float],
+    ) -> str:
+        """Generate a short explanation for an already-determined decision."""
+        prompt = (
+            "You are an AI trading analyst.\n\n"
+            "Explain why the system decided to BUY, SELL, or HOLD.\n\n"
+            f"Asset: {asset}\n"
+            f"RSI: {indicators['rsi']}\n"
+            f"MA20: {indicators['ma20']}\n"
+            f"Decision: {action}\n\n"
+            "Return a short explanation (1-2 sentences)."
+        )
         payload = {"model": self._model_name, "prompt": prompt, "stream": False}
 
         try:
             async with httpx.AsyncClient(timeout=30.0) as client:
                 response = await client.post(self._ollama_url, json=payload)
                 response.raise_for_status()
-        except httpx.ConnectError as exc:
-            raise OllamaUnavailableError(
-                "Ollama is not reachable at http://localhost:11434. "
-                "Ensure the Ollama server is running."
-            ) from exc
-        except httpx.HTTPStatusError:
-            return self._fallback_decision(asset, "fallback decision due to ollama api error")
+                result = response.json()
+        except (httpx.HTTPError, ValueError):
+            return "Strategy consensus triggered this decision."
 
-        try:
-            result = response.json()
-        except ValueError:
-            return self._fallback_decision(
-                asset, "fallback decision due to malformed ollama response"
-            )
-
-        raw_text = result.get("response", "")
-        if not isinstance(raw_text, str) or not raw_text.strip():
-            return self._fallback_decision(asset, decision)
-
-        parsed = self._parse_json_response(raw_text)
-        explained = self._validate_explanation(
-            asset=asset,
-            expected_decision=decision,
-            parsed=parsed,
-        )
-        if explained is None:
-            return self._fallback_decision(asset, decision)
-        return explained
+        explanation = result.get("response", "")
+        if not isinstance(explanation, str) or not explanation.strip():
+            return "Strategy consensus triggered this decision."
+        return " ".join(explanation.strip().split())
 
     def _parse_json_response(self, raw_text: str) -> dict[str, object] | None:
         """Extract and parse JSON object from model text output."""
@@ -169,14 +161,32 @@ class AgentService:
             "reasoning": reasoning,
         }
 
-    def _fallback_decision(self, asset: str, decision: TradingDecision) -> AgentDecision:
+    def _fallback_decision(
+        self,
+        asset: str,
+        decision: TradingDecision,
+        reason: str = "fallback decision due to parsing error",
+    ) -> AgentDecision:
         """Return deterministic fallback explanation when parsing fails."""
         return {
             "asset": asset,
             "decision": decision,
             "confidence": 0.5,
-            "reasoning": "fallback decision due to parsing error",
+            "reasoning": reason,
         }
+
+    def _compute_confidence(
+        self, action: TradingDecision, rsi: float, price: float, ma20: float
+    ) -> float:
+        """Compute deterministic confidence from signal alignment strength."""
+        price_gap = abs(price - ma20) / ma20 if ma20 else 0.0
+        if action == TradingDecision.HOLD:
+            base = 0.58
+        else:
+            base = 0.62
+
+        confidence = base + min(0.18, price_gap) + min(0.12, abs(rsi - 50) / 100)
+        return round(min(confidence, 0.95), 2)
 
     def _deterministic_decision(
         self, asset_holdings: float, rsi: float, price: float, ma20: float

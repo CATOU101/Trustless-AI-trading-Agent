@@ -32,6 +32,7 @@ class TradeRecord(TypedDict):
     cash_balance: float
     asset_holdings: float
     portfolio_value: float
+    position_size: float
 
 
 class TradingService:
@@ -44,6 +45,7 @@ class TradingService:
             "assets": {"bitcoin": 0.0},
         }
         self._trade_history: list[TradeRecord] = []
+        self._peak_portfolio_value = 10000.0
 
     def get_portfolio(self) -> PortfolioState:
         """Return the current in-memory portfolio state."""
@@ -53,7 +55,12 @@ class TradingService:
         }
 
     def execute_trade(
-        self, asset: str, decision: str, price: float, confidence: float = 0.0
+        self,
+        asset: str,
+        decision: str,
+        price: float,
+        confidence: float = 0.0,
+        position_size: float = 0.10,
     ) -> PortfolioState:
         """Execute a virtual trade based on the decision signal.
 
@@ -64,6 +71,8 @@ class TradingService:
         """
         if price <= 0:
             raise ValueError("Price must be greater than zero.")
+        if not 0.0 <= position_size <= 1.0:
+            raise ValueError("Position size must be between 0 and 1.")
 
         normalized_asset = asset.strip().lower()
         normalized_decision = decision.strip().upper()
@@ -73,13 +82,13 @@ class TradingService:
         )["portfolio_value"]
 
         if normalized_decision == "BUY":
-            invest_amount = self._portfolio["cash_balance"] * 0.10
+            invest_amount = self._portfolio["cash_balance"] * position_size
             asset_bought = invest_amount / price
             self._portfolio["cash_balance"] -= invest_amount
             self._portfolio["assets"][normalized_asset] += asset_bought
         elif normalized_decision == "SELL":
             held_quantity = self._portfolio["assets"][normalized_asset]
-            quantity_to_sell = held_quantity * 0.10
+            quantity_to_sell = held_quantity * position_size
             proceeds = quantity_to_sell * price
             self._portfolio["assets"][normalized_asset] -= quantity_to_sell
             self._portfolio["cash_balance"] += proceeds
@@ -103,7 +112,11 @@ class TradingService:
                     "cash_balance": snapshot["cash_balance"],
                     "asset_holdings": snapshot["asset_holdings"],
                     "portfolio_value": snapshot["portfolio_value"],
+                    "position_size": round(position_size, 4),
                 }
+            )
+            self._peak_portfolio_value = max(
+                self._peak_portfolio_value, snapshot["portfolio_value"]
             )
             if post_trade_total > pre_trade_total:
                 reputation_service.record_trade("WIN")
@@ -133,6 +146,16 @@ class TradingService:
     def get_trade_history(self) -> list[TradeRecord]:
         """Return trade history in reverse chronological order."""
         return list(reversed(self._trade_history))
+
+    def get_last_trade_timestamp(self) -> str | None:
+        """Return the latest trade timestamp if present."""
+        if not self._trade_history:
+            return None
+        return self._trade_history[-1]["timestamp"]
+
+    def get_peak_portfolio_value(self) -> float:
+        """Return the historical peak portfolio value."""
+        return self._peak_portfolio_value
 
 
 trading_service = TradingService()

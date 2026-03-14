@@ -37,20 +37,25 @@ def calculate_rsi(prices: list[float], period: int = 14) -> float:
     return round(100 - (100 / (1 + rs)), 4)
 
 
-def calculate_moving_average(prices: list[float], period: int = 20) -> float:
-    """Calculate simple moving average over the specified period."""
-    if period <= 0:
+def moving_average(prices: list[float], window: int = 20) -> float:
+    """Calculate simple moving average over the specified window."""
+    if window <= 0:
         raise ValueError("Moving average period must be greater than zero.")
-    if len(prices) < period:
-        raise ValueError("Not enough price points to calculate moving average.")
+    if len(prices) < window:
+        raise ValueError("Not enough price data")
 
-    window = prices[-period:]
-    return round(sum(window) / period, 4)
+    recent_prices = prices[-window:]
+    return round(sum(recent_prices) / window, 4)
+
+
+def calculate_moving_average(prices: list[float], period: int = 20) -> float:
+    """Backward-compatible wrapper for moving average calculation."""
+    return moving_average(prices=prices, window=period)
 
 
 def compute_indicators(prices: list[float]) -> IndicatorData:
     """Compute RSI and MA20 from historical prices."""
     return {
         "rsi": calculate_rsi(prices=prices, period=14),
-        "ma20": calculate_moving_average(prices=prices, period=20),
+        "ma20": moving_average(prices=prices, window=20),
     }

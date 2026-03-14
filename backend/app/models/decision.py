@@ -57,6 +57,22 @@ class AnalyzeResponse(BaseModel):
         ...,
         description="Technical indicators used for analysis (RSI and MA20).",
     )
+    final_action: TradingDecision | None = Field(
+        default=None,
+        description="Aggregated action from the multi-agent coordinator.",
+    )
+    agent_votes: list[dict[str, str | float]] = Field(
+        default_factory=list,
+        description="Votes emitted by each strategy agent.",
+    )
+    leaderboard: list[dict[str, str | int | float]] = Field(
+        default_factory=list,
+        description="Per-agent performance snapshot for the dashboard.",
+    )
+    risk: dict[str, bool | float | str] = Field(
+        default_factory=dict,
+        description="Risk management outcome and adjusted position size.",
+    )
 
 
 class AgentProfileResponse(BaseModel):
@@ -71,3 +87,24 @@ class AgentProfileResponse(BaseModel):
     reputation_score: float = Field(
         ..., ge=0.0, le=1.0, description="Wins divided by total trades."
     )
+
+
+class AgentDecisionResponse(BaseModel):
+    """Response model for aggregated multi-agent decisions."""
+
+    asset: str = Field(..., description="CoinGecko asset id.")
+    final_action: TradingDecision = Field(..., description="Aggregated platform action.")
+    confidence: float = Field(..., ge=0.0, le=1.0, description="Aggregate confidence.")
+    agent_votes: list[dict[str, str | float]] = Field(
+        ..., description="Vote details from each agent."
+    )
+
+
+class AgentLeaderboardEntry(BaseModel):
+    """Response model for per-agent leaderboard entries."""
+
+    agent: str = Field(..., description="Strategy agent name.")
+    total_trades: int = Field(..., ge=0)
+    win_rate: float = Field(..., ge=0.0, le=1.0)
+    profit: float = Field(..., description="Cumulative paper profit contribution.")
+    average_return: float = Field(..., description="Average return per recorded trade.")

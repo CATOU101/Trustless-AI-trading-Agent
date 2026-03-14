@@ -4,11 +4,14 @@ function fmt(value) {
   return typeof value === "number" ? value.toFixed(2) : "-";
 }
 
-export default function IndicatorsCard({ indicators }) {
+export default function IndicatorsCard({ indicators, price }) {
   return (
     <div className="bg-card rounded-xl p-5 shadow-sm border border-slate-200">
       <h2 className="text-lg font-semibold mb-3">Market Indicators</h2>
       <div className="space-y-2 text-sm">
+        <p>
+          Current Price: <span className="font-medium">{fmt(price)}</span>
+        </p>
         <p>
           RSI: <span className="font-medium">{fmt(indicators?.rsi)}</span>
         </p>
