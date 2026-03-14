@@ -104,14 +104,22 @@ class AgentRunner:
 
     async def run_agent_loop(self) -> None:
         """Continuously scan configured assets on a fixed schedule."""
-        while True:
-            async with self._lock:
-                for asset in ASSETS:
-                    try:
-                        await self.analyze_and_trade(asset)
-                    except Exception as exc:
-                        print(f"Autonomous runner error for {asset}: {exc}")
-            await asyncio.sleep(60)
+        try:
+            while True:
+                async with self._lock:
+                    for asset in ASSETS:
+                        try:
+                            await self.analyze_and_trade(asset)
+                        except asyncio.CancelledError:
+                            print("Agent runner stopped")
+                            raise
+                        except Exception as exc:
+                            print(f"Autonomous runner error for {asset}: {exc}")
+                await asyncio.sleep(60)
+        except asyncio.CancelledError:
+            print("Agent loop shutting down...")
+            print("Agent runner stopped")
+            raise
 
 
 agent_runner = AgentRunner()

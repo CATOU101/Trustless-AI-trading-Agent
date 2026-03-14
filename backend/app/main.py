@@ -12,6 +12,7 @@ from app.routes.backtest import router as backtest_router
 from app.routes.market import router as market_router
 from app.routes.trading import router as trading_router
 from app.services.agent_runner import agent_runner
+from app.utils.task_cleanup import stop_background_tasks
 
 app = FastAPI(title=settings.app_name, version=settings.app_version)
 
@@ -37,11 +38,9 @@ async def start_agent_loop() -> None:
 
 
 @app.on_event("shutdown")
-async def stop_agent_loop() -> None:
-    """Stop the autonomous agent loop when the API shuts down."""
-    task = getattr(app.state, "agent_runner_task", None)
-    if task:
-        task.cancel()
+async def shutdown_event() -> None:
+    """Stop background tasks cleanly when the API shuts down."""
+    await stop_background_tasks()
 
 
 app.include_router(market_router)
