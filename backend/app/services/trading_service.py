@@ -3,7 +3,13 @@
 from datetime import UTC, datetime
 from typing import TypedDict
 
+from app.services.dex_service import dex_service
+from app.services.intent_service import intent_service
 from app.services.reputation_service import reputation_service
+from app.services.wallet_service import wallet_service
+from app.utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class PortfolioState(TypedDict):
@@ -33,10 +39,22 @@ class TradeRecord(TypedDict):
     asset_holdings: float
     portfolio_value: float
     position_size: float
+    wallet: str
+    intent_signature: str
+    dex_source: str
+    dex_price: float
 
 
 class TradingService:
     """Service for virtual trade execution and portfolio valuation."""
+
+    _asset_symbol_map = {
+        "bitcoin": "BTC",
+        "ethereum": "ETH",
+        "solana": "SOL",
+        "dogecoin": "DOGE",
+        "cardano": "ADA",
+    }
 
     def __init__(self) -> None:
         """Initialize portfolio with default sandbox capital."""
@@ -54,6 +72,10 @@ class TradingService:
             "assets": dict(self._portfolio["assets"]),
         }
 
+    def _resolve_asset_symbol(self, asset: str) -> str:
+        """Resolve a CoinGecko asset id to a signer-friendly symbol."""
+        return self._asset_symbol_map.get(asset, asset.upper())
+
     def execute_trade(
         self,
         asset: str,
@@ -61,6 +83,7 @@ class TradingService:
         price: float,
         confidence: float = 0.0,
         position_size: float = 0.10,
+        agent: str = "AgentCoordinator",
     ) -> PortfolioState:
         """Execute a virtual trade based on the decision signal.
 
@@ -81,49 +104,95 @@ class TradingService:
             asset=normalized_asset, price=price
         )["portfolio_value"]
 
-        if normalized_decision == "BUY":
-            invest_amount = self._portfolio["cash_balance"] * position_size
-            asset_bought = invest_amount / price
-            self._portfolio["cash_balance"] -= invest_amount
-            self._portfolio["assets"][normalized_asset] += asset_bought
-        elif normalized_decision == "SELL":
-            held_quantity = self._portfolio["assets"][normalized_asset]
-            quantity_to_sell = held_quantity * position_size
-            proceeds = quantity_to_sell * price
-            self._portfolio["assets"][normalized_asset] -= quantity_to_sell
-            self._portfolio["cash_balance"] += proceeds
-        elif normalized_decision == "HOLD":
-            pass
-        else:
+        if normalized_decision == "HOLD":
+            return self.get_portfolio()
+        if normalized_decision not in {"BUY", "SELL"}:
             raise ValueError("Decision must be BUY, SELL, or HOLD.")
 
-        if normalized_decision in {"BUY", "SELL"}:
-            post_trade_total = self.calculate_portfolio_value(
-                asset=normalized_asset, price=price
-            )["portfolio_value"]
-            snapshot = self.calculate_portfolio_value(asset=normalized_asset, price=price)
-            self._trade_history.append(
-                {
-                    "timestamp": datetime.now(UTC).isoformat(),
-                    "asset": normalized_asset,
-                    "decision": normalized_decision,
-                    "price": round(price, 6),
-                    "confidence": round(confidence, 4),
-                    "cash_balance": snapshot["cash_balance"],
-                    "asset_holdings": snapshot["asset_holdings"],
-                    "portfolio_value": snapshot["portfolio_value"],
-                    "position_size": round(position_size, 4),
-                }
+        wallet_address = wallet_service.get_wallet_address()
+        if normalized_decision == "BUY":
+            intended_amount = self._portfolio["cash_balance"] * position_size
+        else:
+            held_quantity = self._portfolio["assets"][normalized_asset]
+            intended_amount = held_quantity * position_size
+
+        if intended_amount <= 0:
+            return self.get_portfolio()
+
+        intent = intent_service.create_intent(
+            agent=agent,
+            wallet=wallet_address,
+            asset=self._resolve_asset_symbol(normalized_asset),
+            action=normalized_decision,
+            amount=intended_amount,
+        )
+        signature = intent_service.sign_intent(intent)
+        if not intent_service.verify_signature(intent, signature):
+            raise ValueError("Trade intent signature verification failed.")
+
+        dex_execution = dex_service.simulate_swap(intent)
+        if normalized_decision == "BUY":
+            invest_amount = min(
+                dex_execution["sell_amount"],
+                self._portfolio["cash_balance"],
             )
-            self._peak_portfolio_value = max(
-                self._peak_portfolio_value, snapshot["portfolio_value"]
-            )
-            if post_trade_total > pre_trade_total:
-                reputation_service.record_trade("WIN")
-            elif post_trade_total < pre_trade_total:
-                reputation_service.record_trade("LOSS")
-            else:
-                reputation_service.record_trade("NEUTRAL")
+            quote_sell_amount = dex_execution["sell_amount"]
+            quote_buy_amount = dex_execution["buy_amount"]
+            if quote_sell_amount <= 0:
+                return self.get_portfolio()
+
+            buy_scaler = invest_amount / quote_sell_amount
+            asset_bought = quote_buy_amount * buy_scaler
+            self._portfolio["cash_balance"] -= invest_amount
+            self._portfolio["assets"][normalized_asset] += asset_bought
+        else:
+            held_quantity = self._portfolio["assets"][normalized_asset]
+            quantity_to_sell = min(dex_execution["sell_amount"], held_quantity)
+            quote_sell_amount = dex_execution["sell_amount"]
+            quote_buy_amount = dex_execution["buy_amount"]
+            if quote_sell_amount <= 0:
+                return self.get_portfolio()
+
+            sell_scaler = quantity_to_sell / quote_sell_amount
+            proceeds = quote_buy_amount * sell_scaler
+            self._portfolio["assets"][normalized_asset] -= quantity_to_sell
+            self._portfolio["cash_balance"] += proceeds
+
+        post_trade_total = self.calculate_portfolio_value(
+            asset=normalized_asset, price=price
+        )["portfolio_value"]
+        snapshot = self.calculate_portfolio_value(asset=normalized_asset, price=price)
+        self._trade_history.append(
+            {
+                "timestamp": datetime.now(UTC).isoformat(),
+                "asset": normalized_asset,
+                "decision": normalized_decision,
+                "price": round(price, 6),
+                "confidence": round(confidence, 4),
+                "cash_balance": snapshot["cash_balance"],
+                "asset_holdings": snapshot["asset_holdings"],
+                "portfolio_value": snapshot["portfolio_value"],
+                "position_size": round(position_size, 4),
+                "wallet": wallet_address,
+                "intent_signature": signature,
+                "dex_source": dex_execution["quote"]["source"],
+                "dex_price": round(dex_execution["estimated_price"], 10),
+            }
+        )
+        logger.info(
+            "Trade executed | asset=%s action=%s wallet=%s dex_source=%s",
+            normalized_asset,
+            normalized_decision,
+            wallet_address,
+            dex_execution["quote"]["source"],
+        )
+        self._peak_portfolio_value = max(self._peak_portfolio_value, snapshot["portfolio_value"])
+        if post_trade_total > pre_trade_total:
+            reputation_service.record_trade("WIN")
+        elif post_trade_total < pre_trade_total:
+            reputation_service.record_trade("LOSS")
+        else:
+            reputation_service.record_trade("NEUTRAL")
 
         return self.get_portfolio()
 

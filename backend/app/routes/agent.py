@@ -92,6 +92,7 @@ async def analyze_market(payload: AnalyzeRequest) -> AnalyzeResponse:
                 price=market_data["price_usd"],
                 confidence=ai_decision["confidence"],
                 position_size=float(risk["adjusted_position_size"]),
+                agent="AgentAPI",
             )
             ma20 = indicators["ma20"] or market_data["price_usd"]
             if coordination["final_action"] == TradingDecision.BUY:

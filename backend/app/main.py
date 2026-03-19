@@ -11,6 +11,7 @@ from app.routes.agents import router as agents_router
 from app.routes.backtest import router as backtest_router
 from app.routes.market import router as market_router
 from app.routes.trading import router as trading_router
+from app.routes.wallet import router as wallet_router
 from app.services.agent_runner import agent_runner
 from app.utils.task_cleanup import stop_background_tasks
 
@@ -48,3 +49,4 @@ app.include_router(agent_router)
 app.include_router(agents_router)
 app.include_router(trading_router)
 app.include_router(backtest_router)
+app.include_router(wallet_router)

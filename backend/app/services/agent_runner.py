@@ -84,6 +84,7 @@ class AgentRunner:
                 price=market_data["price_usd"],
                 confidence=coordination["confidence"],
                 position_size=float(risk["adjusted_position_size"]),
+                agent="AutonomousRunner",
             )
             ma20 = indicators["ma20"] or market_data["price_usd"]
             if final_action == TradingDecision.BUY:
