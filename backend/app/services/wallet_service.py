@@ -56,7 +56,12 @@ class WalletService:
             logger.info("Wallet file missing. Creating a new agent wallet.")
             return self.create_wallet()
 
-        payload = json.loads(self._wallet_path.read_text(encoding="utf-8"))
+        try:
+            payload = json.loads(self._wallet_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError, json.JSONDecodeError):
+            logger.warning("Wallet file is unreadable. Regenerating wallet.")
+            return self.create_wallet()
+
         raw_private_key = str(payload.get("private_key", "")).strip()
         if not raw_private_key:
             logger.warning("Wallet file is missing private key. Regenerating wallet.")

@@ -1,128 +1,133 @@
 # Explainable AI Trading Agent Backend
 
-Initial backend foundation for an explainable cryptocurrency trading agent built with FastAPI.
+FastAPI backend for an autonomous crypto trading demo with multi-agent strategy coordination, risk controls, paper trading, and simulated decentralized execution.
 
 ## Features
 
 - Async FastAPI API design
 - Modular architecture (`routes`, `services`, `models`, `core`, `utils`)
-- Placeholder market and agent services for quick iteration
-- Explainable trading output (`BUY` / `SELL` / `HOLD`)
+- CoinGecko market data integration
+- Technical indicators (RSI, MA20)
+- Multi-agent strategy voting and coordinator
+- Risk management + reputation tracking
+- Autonomous runner (scans assets every 60 seconds)
+- Paper trading sandbox (starts with `$10,000`)
+- Wallet identity (`agent_wallet.json`)
+- Signed trade intents
+- DEX quote + swap simulation (0x with deterministic fallback)
+
+## Trade Flow
+
+`Decision -> Intent Creation -> Intent Signature -> DEX Quote -> Simulated Swap -> Portfolio Update`
+
+Note: no real blockchain transaction is broadcast in this demo.
 
 ## Project Structure
 
 ```text
 backend/
-├── app/
-│   ├── main.py
-│   ├── config.py
-│   ├── routes/
-│   │   ├── market.py
-│   │   └── agent.py
-│   ├── services/
-│   │   ├── market_service.py
-│   │   └── agent_service.py
-│   ├── models/
-│   │   └── decision.py
-│   ├── utils/
-│   │   └── logger.py
-│   └── core/
-│       └── settings.py
-├── requirements.txt
-└── README.md
+|-- app/
+|   |-- main.py
+|   |-- config.py
+|   |-- routes/
+|   |   |-- market.py
+|   |   |-- agent.py
+|   |   |-- agents.py
+|   |   |-- trading.py
+|   |   |-- wallet.py
+|   |   `-- backtest.py
+|   |-- services/
+|   |   |-- market_service.py
+|   |   |-- indicator_service.py
+|   |   |-- agent_coordinator.py
+|   |   |-- risk_service.py
+|   |   |-- reputation_service.py
+|   |   |-- trading_service.py
+|   |   |-- wallet_service.py
+|   |   |-- intent_service.py
+|   |   `-- dex_service.py
+|   |-- models/
+|   |   `-- decision.py
+|   |-- utils/
+|   |   |-- logger.py
+|   |   `-- task_cleanup.py
+|   `-- agent_wallet.json (auto-created)
+|-- requirements.txt
+`-- README.md
 ```
 
-## Installation
+## Setup (Windows PowerShell)
+
+```powershell
+cd backend
+py -3.13 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+If activation is blocked:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+```
+
+## Setup (macOS/Linux)
 
 ```bash
 cd backend
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\\Scripts\\activate
-pip install -r requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-## Run the Server
+## Run Server
 
 ```bash
-cd backend
-uvicorn app.main:app --reload
+python -m uvicorn app.main:app --reload
 ```
 
-Server starts at `http://127.0.0.1:8000`.
+API base URL: `http://127.0.0.1:8000`
 
 ## Ollama Requirement
 
-The AI decision endpoint uses a local Ollama model (`llama3`) at `http://localhost:11434`.
-
-Start Ollama before calling `/agent/analyze`:
+`POST /agent/analyze` uses local Ollama (`llama3`) for explanation text.
 
 ```bash
 ollama serve
 ollama pull llama3
 ```
 
+If Ollama is unavailable, the backend falls back to deterministic explanation text.
+
 ## API Endpoints
 
 - `GET /health`
 - `GET /market/price/{coin}`
 - `GET /agent/profile`
-- `GET /backtest/{coin}`
+- `POST /agent/analyze`
+- `GET /agents`
+- `GET /agents/decisions?coin=bitcoin`
+- `GET /agents/leaderboard`
 - `GET /portfolio`
 - `GET /trades`
-- `POST /agent/analyze`
+- `GET /wallet`
+- `GET /wallet/address`
+- `GET /backtest/{coin}`
 
-## Market Endpoint (CoinGecko)
+## Wallet + Intent Notes
 
-`GET /market/price/{coin}` fetches live market data from the CoinGecko public API using the coin id (for example, `bitcoin`, `ethereum`, `solana`).
+- Wallet file is persisted at `backend/app/agent_wallet.json`.
+- Trade records now include wallet metadata for traceability.
+- Intent signature verification is enforced before simulated swap execution.
 
-Response fields:
-
-- `asset`: coin id
-- `price_usd`: current USD price
-- `change_24h`: 24-hour USD percentage change
-- `market_cap`: current USD market capitalization
-
-Example:
-
-```http
-GET /market/price/bitcoin
-```
+## Example Wallet Response
 
 ```json
 {
-  "asset": "bitcoin",
-  "price_usd": 63000,
-  "change_24h": -2.5,
-  "market_cap": 1200000000000
-}
-```
-
-If the coin id is invalid, the API returns `404`.
-
-### Example Analyze Request
-
-```json
-{
-  "coin": "bitcoin"
-}
-```
-
-### Example Analyze Response
-
-```json
-{
-  "asset": "bitcoin",
-  "decision": "BUY",
-  "confidence": 0.71,
-  "reasoning": "Price dipped with moderate volatility suggesting a possible rebound.",
-  "portfolio": {
-    "cash_balance": 9000,
-    "bitcoin": 0.015,
-    "portfolio_value": 10020
-  },
-  "indicators": {
-    "rsi": 28,
-    "ma20": 62000
-  }
+  "address": "0xA123...",
+  "balance": 10000
 }
 ```

@@ -68,7 +68,10 @@ class IntentService:
         """Verify that signature matches the intent wallet address."""
         serialized = self._serialize_intent(intent)
         signable = encode_defunct(text=serialized)
-        recovered = Account.recover_message(signable, signature=signature)
+        try:
+            recovered = Account.recover_message(signable, signature=signature)
+        except Exception:  # noqa: BLE001
+            return False
         return recovered.lower() == intent["wallet"].lower()
 
 
