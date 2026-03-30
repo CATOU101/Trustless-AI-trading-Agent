@@ -89,7 +89,7 @@ export default function App() {
       <div className="max-w-6xl mx-auto space-y-6">
         <header>
           <h1 className="text-2xl md:text-3xl font-bold text-ink">
-            Autonomous AI Trading Agent
+            AutoHedge AI
           </h1>
           <p className="text-slate-600 mt-1">
             Read-only dashboard for the backend trading system

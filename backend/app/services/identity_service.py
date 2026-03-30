@@ -6,6 +6,7 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import TypedDict
+from uuid import uuid4
 
 from app.services.wallet_service import wallet_service
 from app.utils.logger import get_logger
@@ -19,8 +20,14 @@ class AgentIdentity(TypedDict):
     agent_name: str
     wallet: str
     version: str
+    registry_type: str
+    chain_id: int
+    agent_id: str
     created_at: str
     description: str
+    capabilities: list[str]
+    endpoints: dict[str, str]
+    artifact_endpoint: str
 
 
 class IdentityService:
@@ -33,14 +40,23 @@ class IdentityService:
         self._identity: AgentIdentity | None = None
 
     def create_identity(self) -> AgentIdentity:
-        """Create a new identity linked to the current wallet and persist it."""
+        """Create and persist an ERC-8004-compatible identity document."""
         wallet_address = wallet_service.get_wallet_address()
         identity: AgentIdentity = {
             "agent_name": "AutoHedge AI",
             "wallet": wallet_address,
             "version": "1.0",
+            "registry_type": "ERC-8004",
+            "chain_id": 11155111,
+            "agent_id": str(uuid4()),
             "created_at": datetime.now(UTC).isoformat(),
             "description": "Autonomous multi-agent trading system",
+            "capabilities": ["trade", "risk", "backtest"],
+            "endpoints": {
+                "decision": "/agent/decision",
+                "artifacts": "/agent/artifacts",
+            },
+            "artifact_endpoint": "/agent/artifacts",
         }
         self._identity_path.write_text(
             json.dumps(identity, indent=2),
@@ -52,7 +68,7 @@ class IdentityService:
         return identity
 
     def load_identity(self) -> AgentIdentity:
-        """Load persisted identity, creating one if needed."""
+        """Load persisted ERC-8004 identity, creating one if needed."""
         if self._identity is not None:
             logger.info("Identity loaded")
             return self._identity
@@ -73,14 +89,39 @@ class IdentityService:
             "agent_name": str(payload.get("agent_name", "AutoHedge AI")),
             "wallet": wallet_address,
             "version": str(payload.get("version", "1.0")),
+            "registry_type": str(payload.get("registry_type", "ERC-8004")),
+            "chain_id": int(payload.get("chain_id", 11155111)),
+            "agent_id": str(payload.get("agent_id", uuid4())),
             "created_at": str(payload.get("created_at", datetime.now(UTC).isoformat())),
             "description": str(
                 payload.get("description", "Autonomous multi-agent trading system")
             ),
+            "capabilities": list(payload.get("capabilities", ["trade", "risk", "backtest"])),
+            "endpoints": dict(
+                payload.get(
+                    "endpoints",
+                    {
+                        "decision": "/agent/decision",
+                        "artifacts": "/agent/artifacts",
+                    },
+                )
+            ),
+            "artifact_endpoint": str(
+                payload.get("artifact_endpoint", "/agent/artifacts")
+            ),
         }
         self._identity = identity
 
-        if str(payload.get("wallet", "")).lower() != wallet_address.lower():
+        needs_persist = (
+            str(payload.get("wallet", "")).lower() != wallet_address.lower()
+            or "registry_type" not in payload
+            or "chain_id" not in payload
+            or "agent_id" not in payload
+            or "capabilities" not in payload
+            or "endpoints" not in payload
+            or "artifact_endpoint" not in payload
+        )
+        if needs_persist:
             self._identity_path.write_text(
                 json.dumps(identity, indent=2),
                 encoding="utf-8",

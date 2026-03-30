@@ -4,9 +4,9 @@ from pydantic import BaseModel, Field
 
 
 class AppSettings(BaseModel):
-    """Runtime settings for the Explainable AI Trading Agent backend."""
+    """Runtime settings for the AutoHedge AI backend."""
 
-    app_name: str = Field(default="Explainable AI Trading Agent")
+    app_name: str = Field(default="AutoHedge AI")
     app_version: str = Field(default="0.1.0")
     debug: bool = Field(default=False)
 

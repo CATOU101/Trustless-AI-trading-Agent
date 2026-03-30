@@ -1,4 +1,4 @@
-# Explainable AI Trading Agent
+# AutoHedge AI
 
 Full-stack hackathon demo for an autonomous AI trading agent.
 

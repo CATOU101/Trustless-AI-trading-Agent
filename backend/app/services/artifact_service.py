@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from datetime import UTC, datetime
 from pathlib import Path
@@ -20,6 +21,8 @@ class Artifact(TypedDict):
     action: str
     confidence: float | None
     timestamp: str
+    validation_status: str | None
+    artifact_hash: str
     metadata: dict[str, Any]
 
 
@@ -62,15 +65,26 @@ class ArtifactService:
         confidence: float | None,
         metadata: dict[str, Any] | None = None,
     ) -> Artifact:
-        """Append and persist a normalized artifact."""
+        """Append and persist a normalized ERC-8004 audit artifact."""
+        validation_status = (
+            "verified"
+            if artifact_type in {"strategy_decision", "risk_check", "execution_result"}
+            else None
+        )
         artifact: Artifact = {
             "type": artifact_type,
             "asset": asset,
             "action": action,
             "confidence": confidence,
             "timestamp": datetime.now(UTC).isoformat(),
+            "validation_status": validation_status,
+            "artifact_hash": "",
             "metadata": metadata or {},
         }
+        digest = hashlib.sha256(
+            json.dumps({k: v for k, v in artifact.items() if k != "artifact_hash"}, sort_keys=True).encode("utf-8")
+        ).hexdigest()
+        artifact["artifact_hash"] = f"0x{digest}"
         artifacts = self._load_artifacts()
         artifacts.append(artifact)
         self._persist()

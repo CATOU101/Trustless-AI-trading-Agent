@@ -1,4 +1,4 @@
-# Explainable AI Trading Agent Frontend
+# AutoHedge AI Frontend
 
 ## Run
 

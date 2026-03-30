@@ -2,6 +2,19 @@
   "agent_name": "AutoHedge AI",
   "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
   "version": "1.0",
+  "registry_type": "ERC-8004",
+  "chain_id": 11155111,
+  "agent_id": "d68f30c2-eafc-4a1b-b0be-5b649520c54f",
   "created_at": "2026-03-30T15:59:57.531930+00:00",
-  "description": "Autonomous multi-agent trading system"
+  "description": "Autonomous multi-agent trading system",
+  "capabilities": [
+    "trade",
+    "risk",
+    "backtest"
+  ],
+  "endpoints": {
+    "decision": "/agent/decision",
+    "artifacts": "/agent/artifacts"
+  },
+  "artifact_endpoint": "/agent/artifacts"
 }

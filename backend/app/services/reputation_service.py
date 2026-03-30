@@ -35,7 +35,7 @@ class ReputationService:
         """Initialize default agent profile."""
         self._profile: AgentProfile = {
             "agent_id": "explainable_trader",
-            "strategy": "Explainable AI trading strategy",
+            "strategy": "AutoHedge AI trading strategy",
             "created_at": datetime.now(UTC).isoformat(),
             "total_trades": 0,
             "wins": 0,

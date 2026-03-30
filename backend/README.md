@@ -1,4 +1,4 @@
-# Explainable AI Trading Agent Backend
+# AutoHedge AI Backend
 
 FastAPI backend for an autonomous crypto trading demo with multi-agent strategy coordination, risk controls, paper trading, and simulated decentralized execution.
 
