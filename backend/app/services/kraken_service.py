@@ -1,10 +1,18 @@
-"""Kraken integration service with CLI-first and REST fallback support."""
+"""Kraken integration service with CLI-first and REST fallback support.
+
+Kraken CLI is expected to live in a dedicated Python 3.11 environment:
+    /Users/madhavan/kraken-cli-env/bin/kraken
+This keeps it isolated from the system Python 3.13 environment.
+
+Important:
+- The backend expects a trading-capable Kraken CLI binary at the path above.
+- Compatibility is validated with a `ticker` command check, not just `--help`.
+- If `ticker` is unsupported, the CLI is treated as incompatible and disabled.
+"""
 
 from __future__ import annotations
 
 import json
-import os
-import shutil
 import subprocess
 from typing import Any
 
@@ -13,6 +21,8 @@ import httpx
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
+
+KRAKEN_CLI_PATH = "/Users/madhavan/kraken-cli-env/bin/kraken"
 
 
 class KrakenCLIError(Exception):
@@ -35,18 +45,6 @@ class KrakenService:
     }
     _rest_ticker_url = "https://api.kraken.com/0/public/Ticker"
     _rest_ohlc_url = "https://api.kraken.com/0/public/OHLC"
-    _extra_path_entries = (
-        "/Users/madhavan/Library/Python/3.13/bin",
-        "/Users/madhavan/Library/Python/3.11/bin",
-    )
-
-    def _build_env(self) -> dict[str, str]:
-        """Return an environment with common user-bin locations on PATH."""
-        env = os.environ.copy()
-        current_path = env.get("PATH", "")
-        env["PATH"] = ":".join((*self._extra_path_entries, current_path))
-        return env
-
     def _resolve_pair(self, asset: str) -> tuple[str, str]:
         """Map a CoinGecko-style asset id to CLI and REST Kraken pairs."""
         normalized = asset.strip().lower()
@@ -57,33 +55,40 @@ class KrakenService:
 
     def kraken_cli_available(self) -> bool:
         """Return True when the Kraken CLI is installed and runnable."""
-        candidate = shutil.which("kraken", path=self._build_env()["PATH"])
-        if not candidate:
-            return False
+        logger.info("Checking Kraken CLI at path: %s", KRAKEN_CLI_PATH)
+        print("Checking Kraken CLI at path...")
         try:
+            logger.info("Using official Kraken CLI binary")
             result = subprocess.run(
-                ["kraken", "--help"],
+                [KRAKEN_CLI_PATH, "--help"],
                 capture_output=True,
                 text=True,
-                env=self._build_env(),
                 check=False,
             )
         except Exception:
+            logger.info("Kraken CLI incompatible")
+            print("Kraken CLI incompatible")
             return False
-        return result.returncode == 0
+        if result.returncode == 0 and "ticker" in result.stdout:
+            logger.info("Kraken CLI command compatibility verified")
+            print("Kraken CLI command compatibility verified")
+            return True
+        logger.info("Kraken CLI incompatible")
+        print("Kraken CLI incompatible")
+        return False
 
-    def run_kraken_command(self, cmd: str) -> dict[str, Any]:
+    def run_kraken_command(self, args: list[str]) -> dict[str, Any]:
         """Execute a Kraken CLI command and parse the JSON response."""
         result = subprocess.run(
-            cmd,
-            shell=True,
+            [KRAKEN_CLI_PATH, *args],
             capture_output=True,
             text=True,
             check=False,
-            env=self._build_env(),
         )
         if result.returncode != 0:
-            raise KrakenCLIError(result.stderr.strip() or result.stdout.strip() or cmd)
+            raise KrakenCLIError(
+                result.stderr.strip() or result.stdout.strip() or " ".join(args)
+            )
         stdout = result.stdout.strip()
         if not stdout:
             raise KrakenCLIError("Kraken CLI returned empty output.")
@@ -133,7 +138,7 @@ class KrakenService:
         """Fetch the latest market price from Kraken CLI."""
         pair, _ = self._resolve_pair(asset)
         payload = await asyncio.to_thread(
-            self.run_kraken_command, f"kraken ticker {pair} -o json"
+            self.run_kraken_command, ["ticker", pair, "-o", "json"]
         )
         ticker = self._unwrap_result(payload, pair)
         if not isinstance(ticker, dict):
@@ -167,7 +172,7 @@ class KrakenService:
         """Fetch daily historical close prices from Kraken CLI."""
         pair, _ = self._resolve_pair(asset)
         payload = await asyncio.to_thread(
-            self.run_kraken_command, f"kraken ohlc {pair} --interval 1440 -o json"
+            self.run_kraken_command, ["ohlc", pair, "--interval", "1440", "-o", "json"]
         )
         rows = self._unwrap_result(payload, pair)
         if not isinstance(rows, list):
@@ -274,7 +279,9 @@ class KrakenService:
         side = action.strip().lower()
         if side not in {"buy", "sell"}:
             raise KrakenCLIError(f"Unsupported Kraken trade side '{action}'.")
-        payload = self.run_kraken_command(f"kraken paper {side} {pair} {amount} -o json")
+        payload = self.run_kraken_command(
+            ["paper", side, pair, str(amount), "-o", "json"]
+        )
         logger.info(
             "Kraken trade executed | asset=%s action=%s pair=%s amount=%s",
             asset,
