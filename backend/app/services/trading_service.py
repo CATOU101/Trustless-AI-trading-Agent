@@ -5,6 +5,7 @@ from typing import TypedDict
 
 from app.services.dex_service import dex_service
 from app.services.intent_service import intent_service
+from app.services.kraken_service import kraken_cli_available, kraken_service
 from app.services.reputation_service import reputation_service
 from app.services.wallet_service import wallet_service
 from app.utils.logger import get_logger
@@ -43,6 +44,24 @@ class TradeRecord(TypedDict):
     intent_signature: str
     dex_source: str
     dex_price: float
+
+
+def enforce_position_rules(
+    action: str,
+    asset: str,
+    portfolio: dict[str, float],
+) -> tuple[str, str | None]:
+    """Prevent impossible trades when cash or holdings are unavailable."""
+    holdings = float(portfolio.get(asset, 0.0))
+    cash = float(portfolio.get("cash_balance", 0.0))
+
+    if action == "SELL" and holdings <= 0:
+        return "HOLD", "No holdings available to sell."
+
+    if action == "BUY" and cash <= 0:
+        return "HOLD", "No cash available to buy."
+
+    return action, None
 
 
 class TradingService:
@@ -130,31 +149,64 @@ class TradingService:
         if not intent_service.verify_signature(intent, signature):
             raise ValueError("Trade intent signature verification failed.")
 
-        dex_execution = dex_service.simulate_swap(intent)
-        if normalized_decision == "BUY":
-            invest_amount = min(
-                dex_execution["sell_amount"],
-                self._portfolio["cash_balance"],
+        execution_source = "sandbox"
+        execution_price = price
+        sandbox_execution = None
+        if kraken_cli_available():
+            logger.info("Using Kraken CLI execution | asset=%s action=%s", normalized_asset, normalized_decision)
+            print("Using Kraken CLI execution")
+            kraken_execution = kraken_service.execute_kraken_trade(
+                normalized_asset,
+                normalized_decision,
+                intended_amount,
             )
-            quote_sell_amount = dex_execution["sell_amount"]
-            quote_buy_amount = dex_execution["buy_amount"]
-            if quote_sell_amount <= 0:
-                return self.get_portfolio()
+            execution_source = "kraken"
+            execution_price = (
+                kraken_service.extract_execution_price(kraken_execution) or price
+            )
+        else:
+            logger.info(
+                "Kraken CLI unavailable, using sandbox execution | asset=%s action=%s",
+                normalized_asset,
+                normalized_decision,
+            )
+            print("Kraken CLI unavailable, using sandbox execution")
+            sandbox_execution = dex_service.simulate_swap(intent)
 
-            buy_scaler = invest_amount / quote_sell_amount
-            asset_bought = quote_buy_amount * buy_scaler
+        if normalized_decision == "BUY":
+            if execution_source == "kraken":
+                invest_amount = min(intended_amount, self._portfolio["cash_balance"])
+                if execution_price <= 0:
+                    return self.get_portfolio()
+                asset_bought = invest_amount / execution_price
+            else:
+                invest_amount = min(
+                    sandbox_execution["sell_amount"],
+                    self._portfolio["cash_balance"],
+                )
+                quote_sell_amount = sandbox_execution["sell_amount"]
+                quote_buy_amount = sandbox_execution["buy_amount"]
+                if quote_sell_amount <= 0:
+                    return self.get_portfolio()
+
+                buy_scaler = invest_amount / quote_sell_amount
+                asset_bought = quote_buy_amount * buy_scaler
             self._portfolio["cash_balance"] -= invest_amount
             self._portfolio["assets"][normalized_asset] += asset_bought
         else:
             held_quantity = self._portfolio["assets"][normalized_asset]
-            quantity_to_sell = min(dex_execution["sell_amount"], held_quantity)
-            quote_sell_amount = dex_execution["sell_amount"]
-            quote_buy_amount = dex_execution["buy_amount"]
-            if quote_sell_amount <= 0:
-                return self.get_portfolio()
+            if execution_source == "kraken":
+                quantity_to_sell = min(intended_amount, held_quantity)
+                proceeds = quantity_to_sell * execution_price
+            else:
+                quantity_to_sell = min(sandbox_execution["sell_amount"], held_quantity)
+                quote_sell_amount = sandbox_execution["sell_amount"]
+                quote_buy_amount = sandbox_execution["buy_amount"]
+                if quote_sell_amount <= 0:
+                    return self.get_portfolio()
 
-            sell_scaler = quantity_to_sell / quote_sell_amount
-            proceeds = quote_buy_amount * sell_scaler
+                sell_scaler = quantity_to_sell / quote_sell_amount
+                proceeds = quote_buy_amount * sell_scaler
             self._portfolio["assets"][normalized_asset] -= quantity_to_sell
             self._portfolio["cash_balance"] += proceeds
 
@@ -175,8 +227,8 @@ class TradingService:
                 "position_size": round(position_size, 4),
                 "wallet": wallet_address,
                 "intent_signature": signature,
-                "dex_source": dex_execution["quote"]["source"],
-                "dex_price": round(dex_execution["estimated_price"], 10),
+                "dex_source": execution_source,
+                "dex_price": round(execution_price, 10),
             }
         )
         logger.info(
@@ -184,7 +236,7 @@ class TradingService:
             normalized_asset,
             normalized_decision,
             wallet_address,
-            dex_execution["quote"]["source"],
+            execution_source,
         )
         self._peak_portfolio_value = max(self._peak_portfolio_value, snapshot["portfolio_value"])
         if post_trade_total > pre_trade_total:

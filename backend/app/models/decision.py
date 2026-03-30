@@ -19,7 +19,11 @@ class MarketPriceResponse(BaseModel):
     asset: str = Field(..., description="CoinGecko asset id.")
     price_usd: float = Field(..., ge=0, description="Current market price in USD.")
     change_24h: float = Field(..., description="24-hour percentage price change.")
-    market_cap: float = Field(..., ge=0, description="Current market capitalization.")
+    market_cap: float | None = Field(
+        default=None,
+        ge=0,
+        description="Current market capitalization when available.",
+    )
 
 
 class AnalyzeRequest(BaseModel):

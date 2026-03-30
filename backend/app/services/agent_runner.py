@@ -10,7 +10,7 @@ from app.services.indicator_service import compute_indicators
 from app.services.market_service import market_service
 from app.services.reputation_service import reputation_service
 from app.services.risk_service import risk_service
-from app.services.trading_service import trading_service
+from app.services.trading_service import enforce_position_rules, trading_service
 
 ASSETS = [
     "bitcoin",
@@ -64,6 +64,20 @@ class AgentRunner:
         final_action = coordination["final_action"]
         if not risk["allowed"]:
             final_action = TradingDecision.HOLD
+        execution_portfolio = {
+            "cash_balance": float(portfolio_state["cash_balance"]),
+            normalized_asset: float(portfolio_state["assets"].get(normalized_asset, 0.0)),
+        }
+        original_action = final_action.value
+        adjusted_action, override_reason = enforce_position_rules(
+            final_action.value,
+            normalized_asset,
+            execution_portfolio,
+        )
+        final_action = TradingDecision(adjusted_action)
+        print("Original action:", original_action)
+        print("Adjusted action:", final_action.value)
+        print("Override reason:", override_reason)
 
         decision_payload = await agent_service.analyze_market(
             asset=normalized_asset,
@@ -75,6 +89,9 @@ class AgentRunner:
             asset_holdings=portfolio_state["assets"].get(normalized_asset, 0.0),
             decision=final_action,
         )
+        if override_reason:
+            decision_payload["decision"] = TradingDecision.HOLD
+            decision_payload["reasoning"] = override_reason
 
         if risk["allowed"] and final_action in {TradingDecision.BUY, TradingDecision.SELL}:
             print("Executing trade...")

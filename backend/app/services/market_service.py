@@ -1,10 +1,15 @@
-"""Market service for retrieving cryptocurrency data from CoinGecko."""
+"""Market service for retrieving cryptocurrency data from Kraken or CoinGecko."""
 
 import asyncio
 from time import monotonic
 from typing import TypedDict
 
 import httpx
+
+from app.services.kraken_service import KrakenCLIError, kraken_service
+from app.utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class CoinNotFoundError(Exception):
@@ -18,7 +23,7 @@ class CoinMarketData(TypedDict):
     price: float
     price_usd: float
     change_24h: float
-    market_cap: float
+    market_cap: float | None
     prices: list[float]
 
 
@@ -58,8 +63,65 @@ class MarketService:
         if cached and monotonic() - cached["fetched_at"] < self._cache_ttl_seconds:
             return cached["data"]
 
+        try:
+            market_data = await self._get_kraken_market_data(normalized)
+            logger.info("Using Kraken market data | asset=%s", normalized)
+            print("Using Kraken market data")
+            self._cache[normalized] = {
+                "fetched_at": monotonic(),
+                "data": market_data,
+            }
+            return market_data
+        except Exception as exc:
+            logger.warning(
+                "Kraken failed, fallback to CoinGecko | asset=%s error=%s",
+                normalized,
+                exc,
+            )
+            print("Kraken failed, fallback to CoinGecko")
+
+        market_data = await self._get_coingecko_market_data(normalized, cached)
+        logger.info("CoinGecko fallback used | asset=%s", normalized)
+        print("CoinGecko fallback used")
+        self._cache[normalized] = {
+            "fetched_at": monotonic(),
+            "data": market_data,
+        }
+        return market_data
+
+    async def _get_kraken_market_data(self, coin: str) -> CoinMarketData:
+        """Fetch normalized market data from Kraken CLI."""
+        price_payload = await kraken_service.get_kraken_price(coin)
+        historical_prices = await kraken_service.get_kraken_history(coin)
+        print("Fetched prices:", len(historical_prices))
+
+        change_24h = price_payload["change_24h"]
+        if change_24h is None and len(historical_prices) >= 2:
+            previous_price = historical_prices[-2]
+            if previous_price > 0:
+                change_24h = (
+                    (price_payload["price_usd"] - previous_price) / previous_price
+                ) * 100
+            else:
+                change_24h = 0.0
+
+        return {
+            "asset": coin,
+            "price": float(price_payload["price_usd"]),
+            "price_usd": float(price_payload["price_usd"]),
+            "change_24h": float(change_24h or 0.0),
+            "market_cap": None,
+            "prices": [float(point) for point in historical_prices[-30:]],
+        }
+
+    async def _get_coingecko_market_data(
+        self,
+        coin: str,
+        cached: CacheEntry | None,
+    ) -> CoinMarketData:
+        """Fetch normalized market data from CoinGecko."""
         params = {
-            "ids": normalized,
+            "ids": coin,
             "vs_currencies": "usd",
             "include_24hr_change": "true",
             "include_market_cap": "true",
@@ -73,7 +135,7 @@ class MarketService:
                 price_response.raise_for_status()
                 payload = price_response.json()
                 chart_response = await client.get(
-                    self._market_chart_url.format(coin=normalized),
+                    self._market_chart_url.format(coin=coin),
                     params=chart_params,
                 )
                 chart_response.raise_for_status()
@@ -83,7 +145,7 @@ class MarketService:
                 return cached["data"]
             raise
 
-        coin_payload = payload.get(normalized)
+        coin_payload = payload.get(coin)
         if not coin_payload:
             raise CoinNotFoundError(f"Coin '{coin}' was not found.")
 
@@ -109,19 +171,14 @@ class MarketService:
             )
         print("Fetched prices:", len(historical_prices))
 
-        market_data: CoinMarketData = {
-            "asset": normalized,
+        return {
+            "asset": coin,
             "price": float(price_usd),
             "price_usd": float(price_usd),
             "change_24h": float(change_24h),
             "market_cap": float(market_cap),
             "prices": historical_prices,
         }
-        self._cache[normalized] = {
-            "fetched_at": monotonic(),
-            "data": market_data,
-        }
-        return market_data
 
     async def get_coin_price(self, coin: str) -> CoinMarketData:
         """Backward-compatible wrapper for market data retrieval."""

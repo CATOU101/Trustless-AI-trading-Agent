@@ -1,7 +1,7 @@
 """Agent analysis API routes."""
 
 import httpx
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 
 from app.models.decision import AnalyzeRequest, AnalyzeResponse, AgentProfileResponse
 from app.models.decision import TradingDecision
@@ -13,7 +13,7 @@ from app.services.indicator_service import compute_indicators
 from app.services.market_service import market_service
 from app.services.reputation_service import reputation_service
 from app.services.risk_service import risk_service
-from app.services.trading_service import trading_service
+from app.services.trading_service import enforce_position_rules, trading_service
 
 router = APIRouter(prefix="/agent", tags=["agent"])
 
@@ -32,10 +32,23 @@ async def get_agent_profile() -> AgentProfileResponse:
     return AgentProfileResponse(**reputation_service.get_agent_profile())
 
 
+@router.get("/decision", response_model=AnalyzeResponse)
+async def get_latest_decision(
+    coin: str = Query(default="bitcoin", min_length=2, max_length=50)
+) -> AnalyzeResponse:
+    """Return the latest explainable decision for a coin without requiring POST."""
+    return await _analyze_coin(coin)
+
+
 @router.post("/analyze", response_model=AnalyzeResponse)
 async def analyze_market(payload: AnalyzeRequest) -> AnalyzeResponse:
     """Fetch market data and return an AI-generated trading decision."""
-    coin_input = payload.coin.lower()
+    return await _analyze_coin(payload.coin)
+
+
+async def _analyze_coin(raw_coin: str) -> AnalyzeResponse:
+    """Run the shared analyze-and-trade flow for a coin identifier."""
+    coin_input = raw_coin.lower()
     coin = COIN_MAP.get(coin_input, coin_input).strip()
     if not coin:
         return _fallback_response(
@@ -74,6 +87,20 @@ async def analyze_market(payload: AnalyzeRequest) -> AnalyzeResponse:
         final_action = coordination["final_action"]
         if not risk["allowed"]:
             final_action = TradingDecision.HOLD
+        execution_portfolio = {
+            "cash_balance": float(portfolio_state["cash_balance"]),
+            coin: float(portfolio_state["assets"].get(coin, 0.0)),
+        }
+        original_action = final_action.value
+        adjusted_action, override_reason = enforce_position_rules(
+            final_action.value,
+            coin,
+            execution_portfolio,
+        )
+        final_action = TradingDecision(adjusted_action)
+        print("Original action:", original_action)
+        print("Adjusted action:", final_action.value)
+        print("Override reason:", override_reason)
 
         ai_decision = await agent_service.analyze_market(
             asset=coin,
@@ -85,6 +112,10 @@ async def analyze_market(payload: AnalyzeRequest) -> AnalyzeResponse:
             asset_holdings=portfolio_state["assets"].get(coin, 0.0),
             decision=final_action,
         )
+        if override_reason:
+            ai_decision["decision"] = TradingDecision.HOLD
+            ai_decision["reasoning"] = override_reason
+
         if risk["allowed"] and ai_decision["decision"].value in {"BUY", "SELL"}:
             trading_service.execute_trade(
                 asset=coin,
@@ -117,7 +148,7 @@ async def analyze_market(payload: AnalyzeRequest) -> AnalyzeResponse:
             **ai_decision,
             portfolio=portfolio,
             indicators=indicators,
-            final_action=coordination["final_action"],
+            final_action=final_action,
             agent_votes=coordination["agent_votes"],
             leaderboard=reputation_service.get_agent_leaderboard(),
             risk=risk,
