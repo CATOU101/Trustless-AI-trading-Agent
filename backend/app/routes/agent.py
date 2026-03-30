@@ -5,6 +5,7 @@ from fastapi import APIRouter, Query
 
 from app.models.decision import AnalyzeRequest, AnalyzeResponse, AgentProfileResponse
 from app.models.decision import TradingDecision
+from app.services.artifact_service import artifact_service
 from app.services.agent_coordinator import agent_coordinator
 from app.services.agent_service import (
     agent_service,
@@ -75,6 +76,12 @@ async def _analyze_coin(raw_coin: str) -> AnalyzeResponse:
             rsi=indicators["rsi"],
             ma20=indicators["ma20"],
         )
+        artifact_service.log_strategy_decision(
+            asset=coin,
+            action=coordination["final_action"].value,
+            confidence=coordination["confidence"],
+            metadata={"agent_votes": coordination["agent_votes"]},
+        )
         current_value = trading_service.calculate_portfolio_value(
             asset=coin, price=market_data["price_usd"]
         )["portfolio_value"]
@@ -83,6 +90,12 @@ async def _analyze_coin(raw_coin: str) -> AnalyzeResponse:
             peak_portfolio_value=trading_service.get_peak_portfolio_value(),
             volatility=abs(market_data["change_24h"]),
             last_trade_timestamp=trading_service.get_last_trade_timestamp(),
+        )
+        artifact_service.log_risk_check(
+            asset=coin,
+            action=coordination["final_action"].value,
+            confidence=coordination["confidence"],
+            metadata=risk,
         )
         final_action = coordination["final_action"]
         if not risk["allowed"]:

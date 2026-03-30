@@ -3,6 +3,7 @@
 from datetime import UTC, datetime
 from typing import TypedDict
 
+from app.services.artifact_service import artifact_service
 from app.services.dex_service import dex_service
 from app.services.intent_service import intent_service
 from app.services.kraken_service import kraken_cli_available, kraken_service
@@ -148,6 +149,16 @@ class TradingService:
         signature = intent_service.sign_intent(intent)
         if not intent_service.verify_signature(intent, signature):
             raise ValueError("Trade intent signature verification failed.")
+        artifact_service.log_trade_intent(
+            asset=normalized_asset,
+            action=normalized_decision,
+            metadata={
+                "agent": agent,
+                "wallet": wallet_address,
+                "intent": intent,
+                "signature": signature,
+            },
+        )
 
         execution_source = "sandbox"
         execution_price = price
@@ -230,6 +241,18 @@ class TradingService:
                 "dex_source": execution_source,
                 "dex_price": round(execution_price, 10),
             }
+        )
+        artifact_service.log_execution(
+            asset=normalized_asset,
+            action=normalized_decision,
+            confidence=confidence,
+            metadata={
+                "wallet": wallet_address,
+                "position_size": round(position_size, 4),
+                "execution_source": execution_source,
+                "execution_price": round(execution_price, 10),
+                "portfolio_value": snapshot["portfolio_value"],
+            },
         )
         logger.info(
             "Trade executed | asset=%s action=%s wallet=%s dex_source=%s",
