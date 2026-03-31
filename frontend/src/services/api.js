@@ -55,3 +55,13 @@ export async function getMarketData(asset) {
   );
   return parseResponse(response);
 }
+
+export async function getAgentIdentity() {
+  const response = await fetch(`${BASE_URL}/agent/identity`);
+  return parseResponse(response);
+}
+
+export async function getAgentArtifacts() {
+  const response = await fetch(`${BASE_URL}/agent/artifacts`);
+  return parseResponse(response);
+}
