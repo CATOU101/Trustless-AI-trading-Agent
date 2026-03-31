@@ -1,6 +1,6 @@
 # AutoHedge AI
 
-AutoHedge AI is an autonomous multi-agent crypto trading platform built for hackathon-style demos.
+AutoHedge AI is a full-stack autonomous crypto trading demo built around a FastAPI backend and a React + Tailwind dashboard.
 
 It combines:
 - live crypto market data
@@ -10,7 +10,8 @@ It combines:
 - paper trading
 - persistent agent identity
 - auditable trade artifacts
-- a React dashboard for live monitoring
+- autonomous backend scanning
+- live dashboard monitoring
 
 ## What The System Does
 
@@ -25,6 +26,8 @@ The frontend is a read-only dashboard that shows:
 - trade history
 - agent votes
 - leaderboard
+- identity and artifact visibility
+- autonomous runner status
 
 ## Architecture
 
@@ -201,6 +204,14 @@ Important note:
 - `GET /wallet`
 - `GET /wallet/address`
 
+## Dashboard Highlights
+
+- Market source visibility: Kraken REST and live source indicator
+- Identity panel: agent name, wallet, agent ID, registry type, chain ID, capabilities
+- Intent panel: latest trade intent artifact with action, amount, signature summary, and chain metadata
+- Artifact panel: recent validation artifacts with status and hash
+- Autonomous runner panel: running status, scan interval, and execution mode visibility
+
 ## Project Structure
 
 ```text
@@ -231,7 +242,7 @@ AI Trading agent/
 
 ```bash
 cd backend
-python3 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
@@ -253,9 +264,7 @@ Frontend default URL:
 
 ## Ollama Setup
 
-Ollama is required for explanation text.
-
-Example setup:
+The backend can use a local Ollama model for explanation text.
 
 ```bash
 ollama serve
