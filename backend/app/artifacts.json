@@ -12379,5 +12379,943 @@
       },
       "signature": "6882d5a09a779ad29bcf77240b7b324e744c4dc363979b731416be6afd43c56948a5326bbdd67b7836ba7ac10ff512da0ef5be1fd4fefb9292d3a1ef89c8b52b1b"
     }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:15:28.543754+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x412a1a570d323b60dde09141ba4d91e7d0104dacc29cf0e5c596fd0135bedf58",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:15:28.560552+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xe112046926194e290b66b1759849b1b523da8e347131dc02c532f81b35059c3e",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:15:32.961997+00:00",
+    "validation_status": null,
+    "artifact_hash": "0x02362c9595585a15daf7d073987d64bb6993c9735b77ed7aa3ff37f3ab42edde",
+    "metadata": {
+      "agent": "AgentAPI",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AgentAPI",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567732
+      },
+      "signature": "cd7f4d5135603c2df615008da739caf40a745ff13abe9fee343ac30a9f395ff37c604413e405540460958e640c0c9115a0d55e36852b41aa549efff5a08b8fac1b"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:15:45.632896+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xe565545651e4030ac42ff099489e12bb1dea6da5c0be98088f9699930263ae01",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:15:45.647212+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x68473d1fc2e11460e1a60579d8beb86edfb079c967bc398af0577be0348ba6f1",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:15:49.441136+00:00",
+    "validation_status": null,
+    "artifact_hash": "0xb86581fb59f28f9d4e3443db73cf2ae801c87a165427e8e11d0ad613b005f2a0",
+    "metadata": {
+      "agent": "AutonomousRunner",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AutonomousRunner",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567749
+      },
+      "signature": "d9636a8a113a940e0cec7aedde3c3ce1e20a90d9784bac0fa98f34a94d06651a18a089779e5eac788c50f50d39d675fc764ae4f6d6c17feb9fec033f1c11b95f1c"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:16:48.107875+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x6737843f311e8c25692a7a8906b52bc78ca0f90edf9bba774719fec9f3d0dcac",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:16:48.121516+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xa50728a3a7a66a7b7ee11a2072ba17d2ac13233f7f84cfc1cf67cb3bde2aa5d0",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:16:49.479689+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xc76776a40e1104a488059ec0422dffb186e9357707dab20c1948ae0e45d3d2a0",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:16:49.498947+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xa67bc136b83f24e338684b842daff497c2fdcae60d6eee9c44fe4a46e9731ae2",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:16:52.237108+00:00",
+    "validation_status": null,
+    "artifact_hash": "0x3e5eabc42cbeb964e0534de16e9c2adcfd59f40aba03f67697a7cce7f9186b46",
+    "metadata": {
+      "agent": "AgentAPI",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AgentAPI",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567812
+      },
+      "signature": "85d86acbc79fa25530989e0b01080543915739e9da94d1029f49fe26d368589318361bc67bd76cfe81bca32720540605428d9b182af5dd18d4f54112007365ab1c"
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:16:56.012178+00:00",
+    "validation_status": null,
+    "artifact_hash": "0xa280715a7e0fced830ccde619df7e48f9f27d52cc4e556ec9f4b4f7b254fed61",
+    "metadata": {
+      "agent": "AutonomousRunner",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AutonomousRunner",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567815
+      },
+      "signature": "9e19fc018f653daa0e939e79200bece46e47c163ab5921a76f4a22ed7e730fa5719a3d86cb6bb7fe0da2d3d3d7392c5a6d498c34e763ced7a0de6e329f740d241b"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:17:47.250687+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd6a58609bc13c83c38158c1d13db09ff9d03ac73915da8e6b0a5e4b786e98716",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:17:47.267099+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x705cb0b04486188cf716eac0ec007e251978e5bbebd3c5bbb33b51cfdf50d34c",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:17:51.741269+00:00",
+    "validation_status": null,
+    "artifact_hash": "0xd8c5a0a871a3d2a9f405aa0441ed682ba64cd280b033892e8c36da9464199f91",
+    "metadata": {
+      "agent": "AgentAPI",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AgentAPI",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567871
+      },
+      "signature": "7d9ff24c602cdf54f57e37a4ad0e7705f728530cee8701f44dd70407152b91be2d61233c45ec72072edb14184c093ff0aed4e331dcc4ae7c915dbd2d947344ab1b"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:17:56.907746+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1642da330e97a79238bdbe0ba38f7f66ac8278989a01635443f871dbffb1d26a",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:17:56.922818+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xc892e49ce4b32b23785a14c60f6d91cc6c449839896ad28550b2dfb290398f99",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:18:02.034214+00:00",
+    "validation_status": null,
+    "artifact_hash": "0xd395636e437261051b21e9f0aa86c1ab645595b3dc399e2d8bd67bf34a1bab3c",
+    "metadata": {
+      "agent": "AutonomousRunner",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AutonomousRunner",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567882
+      },
+      "signature": "035e8076d4b3f5b16e9d594adebb7d2835a5dbc745eb374ab51bcebcc11c3e9219212cf6a9f59d0de8d822941f9df6c9a422d10f7936733a76db9d44f269a56f1b"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:18:47.253843+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xc4050a89f8137d40b3cbebc20be20a0aa4dc325bcda616ef0c8fe055a5baeead",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:18:47.271277+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5e11cd5c2b81a61072a8960691fa22ab652f8fa57a88a500517d8120ca0afb15",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:18:51.532171+00:00",
+    "validation_status": null,
+    "artifact_hash": "0x1945f6dbf0adbf98516b7ab0f9b663d549ce41dba1a9d779c81d7ef32a54e85b",
+    "metadata": {
+      "agent": "AgentAPI",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AgentAPI",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567931
+      },
+      "signature": "2308e7067d410f37e8b0ad3c489585af97d8afb9d2ff9cb9c458d52989a91ad7254b2396b4a4f9664dc8595505a3d0014073c688aede5fca704537533366143b1c"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:19:02.957349+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9b7a29feccabfa0abfb20d7ed4d9b8e7103c822f5cf5c9aed3b34767689ce8e9",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:19:02.965714+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xf71baaa112eabd6d1b7d99099677fcb5130a6ebf2b609f905b6c78ea8a5465c3",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:19:07.271007+00:00",
+    "validation_status": null,
+    "artifact_hash": "0x10058272371efb0be9f86d5f02a967d53e8d1224fbc6fb9d117d4b1517af0304",
+    "metadata": {
+      "agent": "AutonomousRunner",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AutonomousRunner",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567947
+      },
+      "signature": "91387ed4bd63b70a935be119ecaca49ba4c8e343c7276fb20918fccecaa6f0c100d025a04a06d788ac507e4d972bd3792aa02a5f4d97e81726a5f8dcc16244f91b"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:19:47.247867+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0e1ff54378ff5b2fe51cd7653b66c7bf7eff2fcf2e91a8741dd3e869bd1a590c",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:19:47.264914+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x280f2d55c16847bff9c9a20fa92f2487d3063c336aa2639f8862028a75f87d16",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:19:51.138033+00:00",
+    "validation_status": null,
+    "artifact_hash": "0xdcbc9119a6de5cdd2a5469a7b553ab1ce7c486f34c27bc14b88a53906059dbdd",
+    "metadata": {
+      "agent": "AgentAPI",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AgentAPI",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775567991
+      },
+      "signature": "9234a48ec77fc0f6a800be53a459a939fed37f9928086fd262d2f54b019255516f53d7856c7b734c94f8dcc8824dc76002ce47c7fc403caffd408d57d14b51261b"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:20:08.288662+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9e102c4f34a6ab05a66946bb6812e63ef0b2a7193000f052bb0a9483e9ad192e",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:20:08.304579+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x195e3ac598eae60745a29df88d345859cdaa4a4d2ef2c5fd9643e644c91c9e52",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:20:13.048958+00:00",
+    "validation_status": null,
+    "artifact_hash": "0xd13c03fa9497e92c25e605f4c737424b9620730f82d447d4fea1698903a5c500",
+    "metadata": {
+      "agent": "AutonomousRunner",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AutonomousRunner",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775568013
+      },
+      "signature": "a11f863a5f597dcd96a6a797dc7f5c990ef13489164236434b020ea38221cee866cbf714870936c1d94791cb9e17072a6e41112fe6ac235bed20be51f93289a41b"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:20:47.244783+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x26bd569d9761cb1174e15f62599b00c566eecef96ca2cbdc0d25111f532f26cc",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:20:47.264038+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x69ab984f02aaa367c0627fa0788382b74db8f5a6789014d7fde4a9ea00d7e2e0",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:20:51.491805+00:00",
+    "validation_status": null,
+    "artifact_hash": "0x3d0d1c91659afde184f1aa4e8f0edc87792afa4cf5330e58a25f14eea99d55c8",
+    "metadata": {
+      "agent": "AgentAPI",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AgentAPI",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775568051
+      },
+      "signature": "ec77101b0cccf8dd0e52ad827f58bd84d5a46a18bcb7565e8721e83e58d5c3b3130bf426322b10244752207ca47dbebbf39a0bce09cdb176aa3b94b8cb3cc5f01c"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:21:13.927737+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x40a357b1ee039c2d50a53609eb1619a3e5929645b3310f409cb56186a3cf5eac",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:21:13.942676+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5b3aa15a58e3fbec06729e088c31bbfba51d83f8db8268841f1885d516d40a9f",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:21:18.162796+00:00",
+    "validation_status": null,
+    "artifact_hash": "0x958fa084b05c1ffe1c6bb1432fd3f541ed166aa1e12d14746091b1703877a182",
+    "metadata": {
+      "agent": "AutonomousRunner",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AutonomousRunner",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775568078
+      },
+      "signature": "972c632aed7340c2c39229f9a56dd59b4b9b844ae50621e75d6b3575dee07e3567687acd061caa3d6404e99f0950af52f1b66236838ceb0fa9609d20cb5d2bd81b"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:21:47.248488+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x8991f8ac70734641aa0060e1054c85d00adee5f85f073807b9d399e1a326d2b5",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:21:47.266341+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x8afe7e7742ad96d8cc0448f89027903dbe434b3d305cf891a34091c2f72f081b",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:21:51.311193+00:00",
+    "validation_status": null,
+    "artifact_hash": "0x6ffc319076ee9aed6b2a0b46acb4b48126b8150b70349b54af4ab3064a2acd93",
+    "metadata": {
+      "agent": "AgentAPI",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AgentAPI",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775568111
+      },
+      "signature": "4752bd88f7ee87f5d024b9a060cca88163885a2b5fa41c3eb9fb622c1e3ea44474d05108dc252ebb3bdb1b785d82ac3f8ff368a3f9484f4e9d40a6e07f1a4cb91c"
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:22:19.009606+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd821f850868c641784ee2adf29cb68807141494793e37e6e254fead6ce6e4803",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "HOLD",
+          "confidence": 0.57,
+          "reason": "ethereum is near its balance zone, so the reversion edge is weak."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": 0.61,
+    "timestamp": "2026-04-07T13:22:19.016987+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x63412e502cd514877b3c60f90d9111dc46b89674f6db49e4b90ed139de79a2d3",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "trade_intent",
+    "asset": "ethereum",
+    "action": "BUY",
+    "confidence": null,
+    "timestamp": "2026-04-07T13:22:23.903637+00:00",
+    "validation_status": null,
+    "artifact_hash": "0x495e7763e3a0c33579e0b05d456ee63b009ae4a7f93b5be4eca8a792b3284c3d",
+    "metadata": {
+      "agent": "AutonomousRunner",
+      "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+      "intent": {
+        "agent": "AutonomousRunner",
+        "wallet": "0x39E6822aE4795826A6EF0dd69C5C7DA3353EAAc1",
+        "asset": "ETH",
+        "action": "BUY",
+        "amount": 500.0,
+        "timestamp": 1775568143
+      },
+      "signature": "52fa3c59f3591f5dbde84a59031f64baf70db5b454c1623350339f2a21c23e3729244a51713fa499741104689b751b8bfbe3c3b332be5d5778b9c58f2fb20ab01c"
+    }
   }
 ]
