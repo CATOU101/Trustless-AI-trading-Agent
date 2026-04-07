@@ -28,6 +28,7 @@ The frontend is a read-only dashboard that shows:
 - agent votes
 - leaderboard
 - identity and artifact visibility
+- current-asset trade intent visibility
 - autonomous runner status
 
 ## Architecture
@@ -57,10 +58,8 @@ Frontend entrypoint:
 
 ### Autonomous Agent Runner
 
-The backend starts a background loop on startup and scans:
-- `bitcoin`
+The backend starts a background loop on startup and currently scans:
 - `ethereum`
-- `solana`
 
 Runner file:
 - [backend/app/services/agent_runner.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/agent_runner.py)
@@ -218,7 +217,7 @@ Important note:
 
 - Market source visibility: Kraken REST and live source indicator
 - Identity panel: agent name, wallet, agent ID, registry type, chain ID, capabilities
-- Intent panel: latest trade intent artifact with action, amount, signature summary, and chain metadata
+- Intent panel: current-asset trade intent artifact with action, amount, signature summary, and chain metadata
 - Artifact panel: recent validation artifacts with status and hash
 - Autonomous runner panel: running status, scan interval, and execution mode visibility
 

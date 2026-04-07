@@ -86,6 +86,28 @@ class IntentService:
         )
         return intent
 
+    def create_trade_intent(
+        self,
+        decision: dict[str, Any],
+        amount: float,
+        agent: str,
+        wallet: str,
+    ) -> TradeIntent:
+        """Construct a trade intent directly from a decision payload.
+
+        The asset is taken from the decision itself so the EIP-712 message stays
+        aligned with the latest analyzed asset. No fallback asset is applied.
+        """
+        asset = str(decision["asset"]).strip()
+        action = str(decision["final_action"]).strip()
+        return self.create_intent(
+            agent=agent,
+            wallet=wallet,
+            asset=asset,
+            action=action,
+            amount=amount,
+        )
+
     def sign_intent(self, intent: TradeIntent) -> str:
         """Sign a trade intent using EIP-712 typed data."""
         payload = self._build_eip712_payload(intent)

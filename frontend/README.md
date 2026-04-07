@@ -19,13 +19,16 @@ The backend runs the agent automatically. The frontend only displays state and r
 - trade history
 - strategy votes
 - leaderboard
+- identity details
+- current-asset trade intent
+- artifact history
 
 ## Frontend Behavior
 
 The dashboard:
 - polls the backend every 60 seconds
 - prevents overlapping requests
-- defaults to `bitcoin` for live display
+- defaults to `ethereum` for live display
 - stays read-only with no coin selector or manual analyze button
 
 Main app file:
@@ -43,6 +46,9 @@ API client:
 - [src/components/IndicatorsCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/IndicatorsCard.js)
 - [src/components/TradeHistory.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/TradeHistory.js)
 - [src/components/LeaderboardCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/LeaderboardCard.js)
+- [src/components/IdentityCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/IdentityCard.js)
+- [src/components/IntentCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/IntentCard.js)
+- [src/components/ArtifactCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/ArtifactCard.js)
 
 ## Backend Endpoints Used
 
@@ -54,6 +60,8 @@ The frontend reads from these backend endpoints:
 - `GET /agents/leaderboard`
 - `GET /trades`
 - `GET /market/price/{asset}`
+- `GET /agent/identity`
+- `GET /agent/artifacts`
 
 Backend base URL expected by the frontend:
 - `http://localhost:8000`

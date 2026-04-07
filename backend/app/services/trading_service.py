@@ -124,27 +124,26 @@ class TradingService:
             asset=normalized_asset, price=price
         )["portfolio_value"]
 
-        if normalized_decision == "HOLD":
-            return self.get_portfolio()
-        if normalized_decision not in {"BUY", "SELL"}:
+        if normalized_decision not in {"BUY", "SELL", "HOLD"}:
             raise ValueError("Decision must be BUY, SELL, or HOLD.")
 
         wallet_address = wallet_service.get_wallet_address()
         if normalized_decision == "BUY":
             intended_amount = self._portfolio["cash_balance"] * position_size
-        else:
+        elif normalized_decision == "SELL":
             held_quantity = self._portfolio["assets"][normalized_asset]
             intended_amount = held_quantity * position_size
+        else:
+            intended_amount = 0.0
 
-        if intended_amount <= 0:
-            return self.get_portfolio()
-
-        intent = intent_service.create_intent(
+        intent = intent_service.create_trade_intent(
+            decision={
+                "asset": self._resolve_asset_symbol(normalized_asset),
+                "final_action": normalized_decision,
+            },
+            amount=intended_amount,
             agent=agent,
             wallet=wallet_address,
-            asset=self._resolve_asset_symbol(normalized_asset),
-            action=normalized_decision,
-            amount=intended_amount,
         )
         signature = intent_service.sign_intent(intent)
         if not intent_service.verify_signature(intent, signature):
@@ -159,6 +158,12 @@ class TradingService:
                 "signature": signature,
             },
         )
+
+        if normalized_decision == "HOLD":
+            return self.get_portfolio()
+
+        if intended_amount <= 0:
+            return self.get_portfolio()
 
         execution_source = "sandbox"
         execution_price = price

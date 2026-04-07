@@ -20,7 +20,7 @@ import {
   getTradeHistory
 } from "./services/api";
 
-const DEFAULT_ASSET = "bitcoin";
+const DEFAULT_ASSET = "ethereum";
 
 export default function App() {
   const [decisionData, setDecisionData] = useState(null);
@@ -88,14 +88,6 @@ export default function App() {
     () => decisionData?.asset || votesData?.asset || DEFAULT_ASSET,
     [decisionData, votesData]
   );
-  const latestTradeIntentArtifact = useMemo(() => {
-    if (!Array.isArray(artifactsData) || artifactsData.length === 0) return null;
-    for (let i = artifactsData.length - 1; i >= 0; i -= 1) {
-      if (artifactsData[i]?.type === "trade_intent") return artifactsData[i];
-    }
-    return null;
-  }, [artifactsData]);
-
   const status = {
     running: !error,
     asset: currentAsset,
@@ -132,7 +124,8 @@ export default function App() {
             asset={currentAsset}
           />
           <IntentCard
-            artifact={latestTradeIntentArtifact}
+            artifacts={artifactsData}
+            currentAsset={currentAsset}
             chainIdFallback={identityData?.chain_id}
           />
         </section>

@@ -85,9 +85,7 @@ The backend runs the full trading workflow:
 The backend launches the autonomous runner on startup.
 
 Currently scanned assets:
-- `bitcoin`
 - `ethereum`
-- `solana`
 
 The runner loops every 60 seconds and does not require any frontend trigger.
 
