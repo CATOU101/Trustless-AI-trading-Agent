@@ -15,6 +15,7 @@ from app.routes.market import router as market_router
 from app.routes.trading import router as trading_router
 from app.routes.wallet import router as wallet_router
 from app.services.agent_runner import agent_runner
+from app.services.erc8004_service import erc8004_service
 from app.services.identity_service import identity_service
 from app.utils.logger import get_logger
 from app.utils.task_cleanup import stop_background_tasks
@@ -43,7 +44,16 @@ async def start_agent_loop() -> None:
     """Start the autonomous agent loop when the API boots."""
     identity_path = identity_service._identity_path
     existed = identity_path.exists()
-    identity_service.load_identity()
+    identity = identity_service.load_identity()
+    registry_agent_id = erc8004_service.register_agent(identity)
+    if registry_agent_id and identity.get("registry_agent_id") != registry_agent_id:
+        identity["registry_agent_id"] = registry_agent_id
+        identity_service.persist_identity(identity)
+    if identity.get("registry_agent_id") and not identity.get("allocation_claimed", False):
+        claim_tx = erc8004_service.claim_allocation(identity["registry_agent_id"])
+        if claim_tx:
+            identity["allocation_claimed"] = True
+            identity_service.persist_identity(identity)
     if existed:
         logger.info("Agent identity loaded")
     else:

@@ -7,6 +7,7 @@ from typing import Any, TypedDict
 from eth_account import Account
 from eth_account.messages import encode_defunct, encode_typed_data
 
+from app.services.erc8004_service import erc8004_service
 from app.services.wallet_service import wallet_service
 from app.utils.logger import get_logger
 
@@ -97,6 +98,7 @@ class IntentService:
         signed = Account.sign_message(signable, private_key=wallet["private_key"])
         signature = signed.signature.hex()
         logger.info("Intent signed | wallet=%s", intent["wallet"])
+        erc8004_service.submit_trade_intent(intent, signature)
         return signature
 
     def verify_signature(self, intent: TradeIntent, signature: str) -> bool:

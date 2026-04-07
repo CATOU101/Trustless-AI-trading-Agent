@@ -1,1 +1,2297 @@
-[]
+[
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:07:39.474960+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x6425e458671154136b53db883a6c581d52d488e91c6fa6095600db3cd35ba28b",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:07:39.478130+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1189785afe92eacf13afa36bcb1c5bccbdcd81bb5dd8d05f279d81a2251b50bf",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:07:48.507316+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xa95aa16de662058d2b6624a2ec94f60cc3e50b80f581f42cf7c390ec804256ac",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:07:48.507752+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x19edc03ca629e3f1d3722b2ab4cf2622d4ec9066f10b102dbf3c2e57bbaa803b",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:07:54.651689+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x6a349af434ac74f52757770927af4ca77aa3edadf697e22ba0e8b22a2330d7fc",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:07:54.652563+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x4aeedfc0ce1a61a925cf98db558c768f476b9a235d51cae464ad64135c7a9094",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:08:34.952811+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x42768f5324a0db5b90b4a1d94fc4271a3593092676125cb0a961c456869e70a0",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:08:34.953201+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5d7431286166a65468d984ab67a775322d29913459a6a33846e1ce23b084ba9c",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:08:53.640698+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xcd7cade97fc163e346a428eb6110ec4cbfce5c3098a07ddcffb8f32d0284348f",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:08:53.642526+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xb36d73a04873c50c43e465bbbdd7bdd3637c22f9616f3753341e2b666db2c80b",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:08:59.203782+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x802f5c6b3787852601cff6a8428513c517218dfff1dbb835f426babc3371bb34",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:08:59.204360+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x85d3eca5c3bb9c306568d664affd92ce34923adf7d5d7ce3788af9f0d2dd69cc",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:09:04.835162+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd837b326989fff0b0b51546bcc8bccf7ef80dcc7018ea0152564c1b741eea5e5",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:09:04.835958+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9b3d770f90b0c9c9fb34246e9391a0dbfb35fe49d0fbe2f8f62a82cd25582cff",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:09:10.320028+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x198f9f01ab8e7a4a3ce1436156350d4325aec8e9a4dad69d293af4d80f48d740",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:09:10.320931+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x80501d81124bd6b17bbcf78d29bbee22d53046c24ea3bd4c4f78395118ecd895",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:09:34.941320+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5c60ad2e7d2d5d35383d1e7bed6b8947638b3508fd1ef2fba2f7fd3e0b160eb2",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:09:34.942990+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x62c7b68fde15987202602342f7a694b04cd61865cddeea1d7995118eb5687213",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:09:35.665326+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x48d860f05348f79ceb151becdfd9b4b10429182bf53440005251e7c45ab2d083",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:09:35.665876+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x16f6395a09af14263e884f55e25b4a14b92241730c0566842de61ce41897e4b4",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:10:15.080978+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x10a7c6dc9743ca164cca3981651ac0f854c3c9981277705258fe9b2da57aab87",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:10:15.082684+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x995d2404e1fbe62cb0a5665e9d7da1cd998fcffc01ea24e5c57ef75ff54a9eae",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:10:20.778308+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x35c95e6dea1d3b495eef5107eb08acb9d2d51ffc572ce2b8074e46be76c96e57",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:10:20.779897+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xcc5543185a441d46162c328faec91f9521615b4dc1222c542fe292107a152baa",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:10:26.367943+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x13781541996340b9476e3ccb5b32a9b4c9f5253f8c6728c75db49fcbad321cc3",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:10:26.368486+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x55bfe0460c0e9e0438e96090b18ab921babcb84e132fccac5d182fa1f3e9e0c0",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:10:34.945144+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x602d676c132f0edd3cb199f19c784c2b5fb3f2bc22870a15cfcd0c74d1bf0d6b",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:10:34.947026+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x63139f3c6efce94e36457e0ace973a6e4f12a544542ea5b5355a26bd1e47c0a4",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:16:03.619209+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x6ea9fbf63ed01e9d9685b74d981c244c628283bc0bade8d6d2f3d42894c921a0",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:16:03.620290+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1673a90f623ae1ecffc1eff2681f60a3d95fdbd302064154ea9712cf889ff063",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:16:08.336934+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x96f7f3ef1408256765dc133bdeff6f393d1d1be26d0740520bdf6448dcbffd50",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:16:08.338276+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x650647059ca613675325404e249db37f527ab7de1c3b999a6baf7c9955ee030b",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:17:00.690186+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0be1c4eb12910dd0fd8c569e14f7fab6179a60f1294cf2be97ebaf121029ab1f",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:17:00.692026+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xf49382244dfcf27e362df2308487f0c0a84a760918e133ec8494d2ff88b12bc1",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:17:12.465188+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xe59cca82dbc860f7c25fb135c7f376f58827e8190542ab8f26a850cd7046cc08",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:17:12.469198+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x7116ccbf88f3a02b6a2aa7370d665cefa89f10707eb41d978d6f71c7f71a4d13",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:18:17.351129+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1ee74233393c335b5bd0320239c706a3225b5330db408a1514e8b385a747e24f",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:18:17.353734+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xf1051d0032baa1b2afda0326f0a290a9e193d856de38d02d548eee9d8a06609c",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:18:20.880589+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xf26bc8759f22eb09f0f52dc8c67752378f27ed1a7bf322d5ffd0bed0d41f3ac1",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:18:20.882546+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x14f1227b2a4ba3bf3b4592ef5b07cca8bc3a953b68b3d8ebbbf2f015e128f40d",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:18:28.921291+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x316b1c53e600a98d12d6d72c17cc89f8502f96bb172335fd91494c6d760abeeb",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:18:28.923193+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xadfc6b33bd251c7339c55553ac3d74a467f14ef6948ff1811f776fed4a74a469",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:18:44.097658+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd5ce2ed2915a4bf16fb4dc980b4725a6ffbaf1c368b7827566bde9bd1f032c56",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:18:44.098647+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd2a81f2e30904d98decee1f73d61926e4700d6f0256b15dcdfec30e88b91d118",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:19:00.690954+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9e90037eced8c54612276c845ac02135da916a72dbd555142a1e2de1fee7ca6a",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:19:00.692914+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x4defe9da09c96b8606727b640ceac2df62c6ed8f3f93c9a7069e6ecdeb34f730",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:20:01.669885+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x748323a83f671aea21382e9b4e8a081ffe7af1cdb81bdbf1ef888f09cdd76f5e",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:20:01.672134+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x90f8787245895c3d25fdc727413a488c26d6f126b57d3dd60325ffe44daecfaf",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:20:06.721772+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x625e0542c638da1de701d2ee23fa13051a47b98e027df5e3670d45900052155a",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:20:06.723292+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0c20e52e5647b1ccfcdb46799abe9918a92b37123ce3804f6a104d3cee22fe7e",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:20:22.550650+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x26be62ff4da232a1e919a57791ab20076114375c362a5446250681c5a5d29cfa",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:20:22.553509+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x21be4f7876ab4af42870d2d5bbaa2fe2fa088a048556c4cd580f9bf62ad394a2",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:20:53.236500+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x2acb15632f386b862f93c9ad0179fc2b50d017d469bc028da8f81e45f445ed19",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:20:53.238791+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x2bc1f779243eaf6550f216a9e6c9c9a1dfc2a8d4b49b05b17661f3a990e72bb1",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:21:00.693224+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x761cb2489466b05c124c162ba48665abdd15a03a14ebf1202612ad9ffbc24fd4",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:21:00.694652+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9daab8ff9127d9dd5bcb887127ae8b19df9a2c556cf5e19c44d8fbd83e0273dd",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:22:15.409544+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1ad5835ec5dc2140224f88bf5e6715fa62d6f5cc1d3193bfd0872a26c6c8c292",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:22:15.410636+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xf2bc6bbfe93eb79922d759b5fc278e76704ab1906fe908cf05c4845c8274fcca",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:22:26.288463+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xc9b8dc3720ad7b4e4f39e104817b69e78cf9f8af5e80e36b12bd8c3d27c44cf8",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:22:26.290610+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x6e8bee9474058f15eeb1504fdac71276058b8576bfaefeba5a83eb6525897ba0",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:22:37.420825+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xde6fd1bc39cc103033d5fdbb093cc0b23805188b4cb42de5c6cf11d8d075f7c0",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:22:37.422668+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd7cc89ee1a2fab42262fccaf8b3b28a4782c38bb37d35c57c25c95f3fe2ad4df",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:23:43.455546+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xf68b7c50b123d2b7d0d0997eb01996b20057112772caaae56cec7070ecffd4a8",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:23:43.458396+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xe64a326cb406d6a799ef9fc4737f8ba540802e317357fdb8c4c3620a689f4570",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:23:59.679671+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x470a8a94191c4736ed245c8316b043b5e5d5d616b8fa8e045e5307a6bc9dbdbe",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:23:59.680666+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x869fdfe0f099d54dd3ee8f41f0adb65aad95d48d9e6fb3ba5b072cb5f504fd03",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:24:00.690960+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x96ac846e54b1543f13db963f57178d80bfe92de7bf78519b622c37dda75c6479",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:24:00.691602+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x92fba11be35fd219b674f9460ce32d11da6820a6955474fea6fb49ac58b49d91",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:24:05.893376+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xb218e6004b01666ed0cc52e2e5ae728d5e234ffb2675104da576cd900a7e4332",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:24:05.894811+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1815a33c105125bbfdd99f410eed91fdce590d0c5db44f14c58bf9670a33f3cc",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:24:09.270162+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xac6f17a365c62fef946fd18bb3528f02a9c7e5c1f4a05446452d6ea4244cd54f",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:24:09.270939+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x079e2627f4a3a215ccf83a882fa38b55a9f960f7e18fa5c3ab241ada48eb500c",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:24:16.901449+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x47511f958a3bd72a0013570237a4710b4d6212a460ec1162caf2b8a7026edfd1",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:24:16.903424+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd396de18a2eb489b9dc8f4a00ae281a3c61eb716efef7b82c77d4c605c1af756",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:25:01.331264+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9bcbf2a03580ffbae39d3d2fdc9a709a13f5d463bdb0364fa671149e2077ce5c",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:25:01.331912+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x7158f64ca222d81d1ada57ca720b94827ea6105b2fcc761166ac0d2efbfb062f",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:25:25.323725+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5b2ac10219850d0518b8689d20b3be9e2be595d433d9654fc36f336bb69ace3e",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:25:25.327100+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5f5d1f769e7a2498c90bf7c8bc22833fc23fc6426aa92816cf2497c3b3cc04a8",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:25:30.737320+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x55370677eb04378fe3bbd5a3b70ee89c713639fef09878fd3e062f956ad6900b",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:25:30.739951+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1cc401acd6e5c34e5d921e924687c7450f8cba5a8f692d78df1b3c739edcbbc6",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:25:35.834989+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xc4d11b444e8f0414807351fbc814f3aea501834ef295a7108761091e60aa5814",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:25:35.836160+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x29717c55539d0948f20899b7790c8fdc9fe6325d5f16aca0bc790885758f62b9",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:00.700645+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x8256fc66e082cf554d210bd22aa347a1af7348ffc4595d7fa2fbb925b2340101",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:00.701447+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1911b255a026e2a58755abd8d185790d9ab80fd5b49eff4c2533c26d0daa57ea",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:02.504690+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x60714ab49419bc9b5e1e9b7e9b52f80aef6ffef5273074148706193cf2918cd1",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:02.506103+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x239e3406e256df2137ffa79b58ce7094277b0da85e088028d1c2ff3f6e501952",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:41.208077+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x2514ae2acfd17ef14cfeae40213015c504d4681daac228ae3885136f4c695d5c",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:41.210661+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xe051cff97d81d42038bed315c1e99eb41055ed853d00f4d30b1ad426f9a20ddc",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:45.492692+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5dafc2c2a66e7791db852eb3d348fb13bc03535c16f6cc1908a6642d3ff009db",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:45.494945+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x6b93998c4944819fa249ab226ae5e7de5b4583b66fb0f6dfd18010b149e03e6e",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:50.192771+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xb52a671122d46e69c0917901e77b6ad9607ef0af19ece77157ac1deaac512e4e",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:26:50.194625+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xbfcc4948ab1675977ede14ef223333bd8a56403e1dbcc1c380e032f70e5115d9",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:27:01.835014+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x225ff74289728554b42179212440ecee5174b3ec2e27e2e87b7c6bb85a084e4c",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:27:01.836788+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x3b848c53f22dc1e7b024925038f040fbbc2113a1e0cff86f4dde5d409635386c",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:27:55.145306+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xde4540ff3f961287906d45484cda021021d0353f80ee6e6ce766ccaf682a1562",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:27:55.146040+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x76f22cb7df25dd28a3d73083d162b9566b5f6d1d5195f009cd1442785a86487a",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:28:01.160263+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x6254a45cac599b819de3749c7c3267ccb8c5629560dabad032ecd582a96cf823",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "ethereum is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "ethereum is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:28:01.161497+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x8d115980c8e83fc769d44099f366217eb3bb3e9d7e7dee5014920993865d158d",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:28:01.839066+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5949570bf6755ebd0133adf0b27f1f773f38ae15195e31d778187e8c60acd72a",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "bitcoin momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "bitcoin is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "bitcoin is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "bitcoin",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:28:01.840799+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5e85be721632d937fe8c83d56337183f0963010064a078250be0738220ae4f47",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:28:05.971485+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0ebee57717b970d0720b40d34bc81b6b497f7d46636ac7ec759b2b4d073f7a38",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "solana momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "BUY",
+          "confidence": 0.76,
+          "reason": "solana is oversold with RSI below 30, which supports a rebound setup."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "SELL",
+          "confidence": 0.68,
+          "reason": "solana is trading below MA20, so the trend remains weak."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "solana",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-03-31T10:28:05.973203+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1d8eb6d369c5dd5f31a85988b47d7146a9389bd8513fbbb4983ad7625eeddd8e",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.05,
+      "reason": "Volatility elevated. Position size reduced to 5%."
+    }
+  }
+]

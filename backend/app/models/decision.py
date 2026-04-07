@@ -93,6 +93,38 @@ class AgentProfileResponse(BaseModel):
     )
 
 
+class AgentIdentityResponse(BaseModel):
+    """Response model for the persistent ERC-8004-style agent identity."""
+
+    agent_name: str = Field(..., description="Human-readable agent name.")
+    wallet: str = Field(..., description="Wallet address linked to the agent.")
+    version: str = Field(..., description="Identity document version.")
+    registry_type: str = Field(..., description="Identity registry standard.")
+    chain_id: int = Field(..., description="Chain identifier for signed intents.")
+    agent_id: str = Field(..., description="Stable UUID for the agent identity.")
+    created_at: str = Field(..., description="ISO 8601 creation timestamp.")
+    description: str = Field(..., description="Short identity description.")
+    capabilities: list[str] = Field(
+        default_factory=list,
+        description="Declared capabilities exposed by the autonomous agent.",
+    )
+    endpoints: dict[str, str] = Field(
+        default_factory=dict,
+        description="Relevant API endpoints exposed by the agent.",
+    )
+    artifact_endpoint: str = Field(
+        ..., description="Primary endpoint for validation artifacts."
+    )
+    registry_agent_id: str | None = Field(
+        default=None,
+        description="Onchain AgentRegistry identifier when registration succeeds.",
+    )
+    allocation_claimed: bool = Field(
+        default=False,
+        description="Whether the Sepolia hackathon allocation has been claimed.",
+    )
+
+
 class AgentDecisionResponse(BaseModel):
     """Response model for aggregated multi-agent decisions."""
 

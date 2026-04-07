@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, TypedDict
 
 from app.utils.logger import get_logger
+from app.services.erc8004_service import erc8004_service
 
 logger = get_logger(__name__)
 
@@ -88,6 +89,7 @@ class ArtifactService:
         artifacts = self._load_artifacts()
         artifacts.append(artifact)
         self._persist()
+        erc8004_service.post_validation_checkpoint(artifact["artifact_hash"])
         label = artifact_type.replace("_decision", "").replace("_check", "")
         logger.info("Artifact logged: %s", label)
         return artifact
