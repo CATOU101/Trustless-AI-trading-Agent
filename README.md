@@ -10,6 +10,7 @@ It combines:
 - paper trading
 - persistent agent identity
 - auditable trade artifacts
+- Sepolia ERC-8004 shared contract integration
 - autonomous backend scanning
 - live dashboard monitoring
 
@@ -122,7 +123,7 @@ Explanation service:
 
 ### Identity, Wallet, Intent, and Artifacts
 
-The project includes an ERC-8004-style agent identity layer and an auditable artifact trail.
+The project includes an ERC-8004-style agent identity layer, Sepolia shared contract integration, and an auditable artifact trail.
 
 Identity:
 - [backend/app/services/identity_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/identity_service.py)
@@ -135,6 +136,9 @@ Wallet:
 Trade intent signing:
 - [backend/app/services/intent_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/intent_service.py)
 
+Sepolia shared contract integration:
+- [backend/app/services/erc8004_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/erc8004_service.py)
+
 Artifacts:
 - [backend/app/services/artifact_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/artifact_service.py)
 - persisted at [backend/app/artifacts.json](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/artifacts.json)
@@ -144,6 +148,12 @@ Artifacts currently cover:
 - risk checks
 - trade intents
 - execution results
+
+Onchain sync currently mirrors:
+- agent registration to `AgentRegistry`
+- sandbox allocation claim through `HackathonVault`
+- signed trade intent submission to `RiskRouter`
+- artifact hash checkpointing to `ValidationRegistry`
 
 ### Backtesting
 
@@ -285,6 +295,42 @@ Kraken integration is intentionally layered:
 - sandbox execution remains available as fallback
 
 This keeps the system demo-friendly and resilient even when external execution tooling is not fully available.
+
+## Sepolia ERC-8004 Integration
+
+The backend now includes a thin onchain integration layer for the shared ERC-8004 hackathon contracts on Sepolia.
+
+Chain:
+- `11155111` (`Sepolia`)
+
+Contracts:
+- `AgentRegistry`: `0x97b07dDc405B0c28B17559aFFE63BdB3632d0ca3`
+- `HackathonVault`: `0x0E7CD8ef9743FEcf94f9103033a044caBD45fC90`
+- `RiskRouter`: `0xd6A6952545FF6E6E6681c2d15C59f9EB8F40FdBC`
+- `ReputationRegistry`: `0x423a9904e39537a9997fbaF0f220d79D7d545763`
+- `ValidationRegistry`: `0x92bF63E5C7Ac6980f237a7164Ab413BE226187F1`
+
+The integration layer is best-effort and non-fatal:
+- if RPC configuration is missing, the backend continues in local-only mode
+- if contract calls fail, the trading workflow continues and logs a warning
+
+Environment variables used by the backend:
+
+```env
+SEPOLIA_RPC_URL=https://your-sepolia-rpc
+AGENT_PRIVATE_KEY=0xyour_private_key
+```
+
+Behavior:
+- on startup, the backend attempts to register the agent onchain
+- if registration succeeds, the returned onchain id is stored as `registry_agent_id`
+- if available, the backend claims the sandbox allocation once
+- after signed intent creation, the backend submits the intent to `RiskRouter`
+- after artifact creation, the backend posts the artifact hash to `ValidationRegistry`
+
+Important note:
+- the contract ABIs in the service are placeholder fragments intended for wiring and integration
+- replace them with verified shared contract ABIs for production-grade Sepolia usage
 
 ## Additional Documentation
 

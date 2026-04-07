@@ -10,6 +10,7 @@ It handles:
 - risk checks
 - paper trading
 - identity persistence
+- Sepolia ERC-8004 contract sync
 - artifact logging
 - leaderboard tracking
 - backtesting
@@ -25,8 +26,9 @@ The backend runs the full trading workflow:
 6. enforce position-aware trading rules
 7. generate explanation text with Ollama
 8. execute a sandbox trade or optional Kraken CLI path
-9. log audit artifacts
-10. update reputation and trade history
+9. mirror key checkpoints to Sepolia shared contracts
+10. log audit artifacts
+11. update reputation and trade history
 
 ## Stack
 
@@ -71,6 +73,7 @@ The backend runs the full trading workflow:
 - [app/services/dex_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/dex_service.py)
 - [app/services/identity_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/identity_service.py)
 - [app/services/artifact_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/artifact_service.py)
+- [app/services/erc8004_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/erc8004_service.py)
 
 ### Strategy Agents
 - [app/services/agents/momentum_agent.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/agents/momentum_agent.py)
@@ -190,6 +193,8 @@ Identity fields include:
 - `registry_type`
 - `chain_id`
 - `agent_id`
+- `registry_agent_id`
+- `allocation_claimed`
 - `capabilities`
 - `endpoints`
 - `artifact_endpoint`
@@ -203,6 +208,8 @@ Wallet is persisted in:
 
 Trade intents are signed with an EIP-712-style typed payload in:
 - [app/services/intent_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/intent_service.py)
+
+After signing, the backend attempts to submit the intent to the Sepolia `RiskRouter`.
 
 ### Artifacts
 
@@ -218,6 +225,38 @@ Artifact types include:
 Artifacts also include:
 - `validation_status`
 - `artifact_hash`
+
+After each artifact is persisted, the backend attempts to post the `artifact_hash`
+to the Sepolia `ValidationRegistry`.
+
+## Sepolia ERC-8004 Shared Contracts
+
+The backend includes a dedicated Web3 integration layer for the official hackathon
+contracts on Sepolia.
+
+Chain ID:
+- `11155111`
+
+Contracts:
+- `AgentRegistry`: `0x97b07dDc405B0c28B17559aFFE63BdB3632d0ca3`
+- `HackathonVault`: `0x0E7CD8ef9743FEcf94f9103033a044caBD45fC90`
+- `RiskRouter`: `0xd6A6952545FF6E6E6681c2d15C59f9EB8F40FdBC`
+- `ReputationRegistry`: `0x423a9904e39537a9997fbaF0f220d79D7d545763`
+- `ValidationRegistry`: `0x92bF63E5C7Ac6980f237a7164Ab413BE226187F1`
+
+Contract integration file:
+- [app/services/erc8004_service.py](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/backend/app/services/erc8004_service.py)
+
+Current onchain behavior:
+- register agent on startup if `registry_agent_id` is missing
+- persist returned registry id to `agent_identity.json`
+- claim sandbox allocation once
+- submit signed trade intents to `RiskRouter`
+- submit validation artifact hashes to `ValidationRegistry`
+
+This integration is intentionally best-effort:
+- missing RPC config does not block local execution
+- contract call failures log warnings and preserve the local autonomous flow
 
 ## API Endpoints
 
@@ -280,6 +319,13 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
+Create `backend/.env` with:
+
+```env
+SEPOLIA_RPC_URL=https://your-sepolia-rpc
+AGENT_PRIVATE_KEY=0xyour_private_key
+```
+
 ### Windows PowerShell
 
 ```powershell
@@ -329,3 +375,11 @@ Current configured CLI path:
 - `/Users/madhavan/kraken-cli-env/bin/kraken`
 
 This layered setup lets the system keep running even when execution tooling is unavailable or partially configured.
+
+## Notes On Contract ABIs
+
+The current ERC-8004 service uses minimal ABI placeholders to keep the integration
+layer small and non-invasive.
+
+For a full Sepolia deployment flow, replace those placeholder fragments with the
+verified ABIs for the shared hackathon contracts.
