@@ -31,6 +31,8 @@ RISK_ROUTER_ADDRESS = "0xd6A6952545FF6E6E6681c2d15C59f9EB8F40FdBC"
 REPUTATION_REGISTRY_ADDRESS = "0x423a9904e39537a9997fbaF0f220d79D7d545763"
 VALIDATION_REGISTRY_ADDRESS = "0x92bF63E5C7Ac6980f237a7164Ab413BE226187F1"
 
+LOG_PREFIX = "[ERC-8004]"
+
 # Placeholder ABIs for the shared ERC-8004 hackathon contracts.
 AGENT_REGISTRY_ABI: list[dict[str, Any]] = [
     {
@@ -102,7 +104,7 @@ class ERC8004Service:
             return self._web3
 
         if not settings.sepolia_rpc_url:
-            logger.warning("SEPOLIA_RPC_URL is not configured. Onchain sync disabled.")
+            logger.warning("%s SEPOLIA_RPC_URL is not configured. Onchain sync disabled.", LOG_PREFIX)
             return None
 
         client = Web3(Web3.HTTPProvider(settings.sepolia_rpc_url))
@@ -150,6 +152,8 @@ class ERC8004Service:
 
         existing_agent_id = identity.get("registry_agent_id")
         if existing_agent_id:
+            logger.info("%s Agent already registered", LOG_PREFIX)
+            logger.info("%s agentId = %s", LOG_PREFIX, existing_agent_id)
             return str(existing_agent_id)
 
         contract = self._contract(AGENT_REGISTRY_ADDRESS, AGENT_REGISTRY_ABI)
@@ -164,13 +168,15 @@ class ERC8004Service:
                 str(identity.get("description", "")),
             ).build_transaction(self._build_base_tx(web3, AGENT_REGISTRY_ADDRESS))
             tx_hash = self._send_transaction(tx)
-            logger.info("AgentRegistry registerAgent submitted | tx=%s", tx_hash)
+            logger.info("%s AgentRegistry registerAgent submitted | tx=%s", LOG_PREFIX, tx_hash)
             registry_agent_id = contract.functions.getAgentId(
                 web3.to_checksum_address(str(identity["wallet"]))
             ).call()
+            logger.info("%s Agent registered", LOG_PREFIX)
+            logger.info("%s agentId = %s", LOG_PREFIX, registry_agent_id)
             return str(registry_agent_id)
         except Exception as exc:  # noqa: BLE001
-            logger.warning("Agent registry sync failed: %s", exc)
+            logger.warning("%s Agent registration failed: %s", LOG_PREFIX, exc)
             return None
 
     def claim_allocation(self, agent_id: str | int) -> str | None:
@@ -181,14 +187,21 @@ class ERC8004Service:
             return None
 
         try:
+            logger.info("%s Claiming sandbox allocation", LOG_PREFIX)
             tx = contract.functions.claimAllocation(int(agent_id)).build_transaction(
                 self._build_base_tx(web3, HACKATHON_VAULT_ADDRESS)
             )
             tx_hash = self._send_transaction(tx)
-            logger.info("HackathonVault claimAllocation submitted | agentId=%s tx=%s", agent_id, tx_hash)
+            logger.info("%s Vault allocation successful", LOG_PREFIX)
+            logger.info(
+                "%s HackathonVault claimAllocation submitted | agentId=%s tx=%s",
+                LOG_PREFIX,
+                agent_id,
+                tx_hash,
+            )
             return tx_hash
         except Exception as exc:  # noqa: BLE001
-            logger.warning("Sandbox allocation claim failed: %s", exc)
+            logger.warning("%s Sandbox allocation claim failed: %s", LOG_PREFIX, exc)
             return None
 
     def submit_trade_intent(self, intent: Mapping[str, Any], signature: str) -> str | None:
@@ -199,6 +212,7 @@ class ERC8004Service:
             return None
 
         try:
+            logger.info("%s Submitting intent to RiskRouter", LOG_PREFIX)
             amount = int(round(float(intent["amount"]) * 1_000_000))
             tx = contract.functions.submitIntent(
                 str(intent["asset"]),
@@ -208,10 +222,17 @@ class ERC8004Service:
                 Web3.to_bytes(hexstr=signature),
             ).build_transaction(self._build_base_tx(web3, RISK_ROUTER_ADDRESS))
             tx_hash = self._send_transaction(tx)
-            logger.info("RiskRouter submitIntent submitted | asset=%s action=%s tx=%s", intent["asset"], intent["action"], tx_hash)
+            logger.info("%s RiskRouter submission complete", LOG_PREFIX)
+            logger.info(
+                "%s RiskRouter submitIntent submitted | asset=%s action=%s tx=%s",
+                LOG_PREFIX,
+                intent["asset"],
+                intent["action"],
+                tx_hash,
+            )
             return tx_hash
         except Exception as exc:  # noqa: BLE001
-            logger.warning("Trade intent submission failed: %s", exc)
+            logger.warning("%s Trade intent submission failed: %s", LOG_PREFIX, exc)
             return None
 
     def post_validation_checkpoint(self, artifact_hash: str) -> str | None:
@@ -222,14 +243,21 @@ class ERC8004Service:
             return None
 
         try:
+            logger.info("%s Posting validation checkpoint", LOG_PREFIX)
             tx = contract.functions.postCheckpoint(
                 Web3.to_bytes(hexstr=artifact_hash)
             ).build_transaction(self._build_base_tx(web3, VALIDATION_REGISTRY_ADDRESS))
             tx_hash = self._send_transaction(tx)
-            logger.info("ValidationRegistry checkpoint submitted | hash=%s tx=%s", artifact_hash, tx_hash)
+            logger.info("%s Validation checkpoint submitted", LOG_PREFIX)
+            logger.info(
+                "%s ValidationRegistry checkpoint submitted | hash=%s tx=%s",
+                LOG_PREFIX,
+                artifact_hash,
+                tx_hash,
+            )
             return tx_hash
         except Exception as exc:  # noqa: BLE001
-            logger.warning("Validation checkpoint submission failed: %s", exc)
+            logger.warning("%s Validation checkpoint submission failed: %s", LOG_PREFIX, exc)
             return None
 
 
