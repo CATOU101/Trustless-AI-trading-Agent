@@ -46,15 +46,21 @@ async def start_agent_loop() -> None:
     identity_path = identity_service._identity_path
     existed = identity_path.exists()
     identity = identity_service.load_identity()
-    if not identity.get("registry_agent_id"):
+    if identity.get("agent_id") and not identity.get("registry_agent_id"):
+        logger.info("%s Agent already registered", ERC8004_PREFIX)
+        logger.info("%s agentId = %s", ERC8004_PREFIX, identity["agent_id"])
+    elif not identity.get("registry_agent_id"):
         logger.info("%s No onchain agentId present. Attempting registration.", ERC8004_PREFIX)
-    registry_agent_id = erc8004_service.register_agent(identity)
-    if registry_agent_id and identity.get("registry_agent_id") != registry_agent_id:
+    registry_agent_id = await erc8004_service.register_agent(identity)
+    if (
+        registry_agent_id
+        and identity.get("registry_agent_id") != registry_agent_id
+    ):
         identity["registry_agent_id"] = registry_agent_id
         identity_service.persist_identity(identity)
         logger.info("%s agentId = %s", ERC8004_PREFIX, registry_agent_id)
     if identity.get("registry_agent_id") and not identity.get("allocation_claimed", False):
-        claim_tx = erc8004_service.claim_allocation(identity["registry_agent_id"])
+        claim_tx = await erc8004_service.claim_allocation(identity["registry_agent_id"])
         if claim_tx:
             identity["allocation_claimed"] = True
             identity_service.persist_identity(identity)

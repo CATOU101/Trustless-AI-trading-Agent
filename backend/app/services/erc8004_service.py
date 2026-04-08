@@ -12,6 +12,7 @@ verified deployed ABIs when they are available.
 
 from __future__ import annotations
 
+import asyncio
 from collections.abc import Mapping
 from typing import Any
 
@@ -22,6 +23,7 @@ from app.services.wallet_service import wallet_service
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
+tx_lock = asyncio.Lock()
 
 SEPOLIA_CHAIN_ID = 11155111
 
@@ -122,17 +124,6 @@ class ERC8004Service:
             return None
         return web3.eth.contract(address=web3.to_checksum_address(address), abi=abi)
 
-    def _build_base_tx(self, web3: Web3, address: str) -> dict[str, Any]:
-        """Build the common transaction envelope."""
-        wallet = wallet_service.load_wallet()
-        return {
-            "from": wallet["address"],
-            "nonce": web3.eth.get_transaction_count(wallet["address"]),
-            "chainId": SEPOLIA_CHAIN_ID,
-            "gas": 500000,
-            "gasPrice": web3.eth.gas_price,
-        }
-
     def _send_transaction(self, tx: dict[str, Any]) -> str:
         """Sign and broadcast a transaction, returning the transaction hash."""
         web3 = self._get_web3()
@@ -142,7 +133,51 @@ class ERC8004Service:
         tx_hash = web3.eth.send_raw_transaction(signed.raw_transaction)
         return web3.to_hex(tx_hash)
 
-    def register_agent(self, identity: Mapping[str, Any]) -> str | None:
+    async def _send_serialized_transaction(self, build_tx: Any) -> str:
+        """Serialize onchain writes to avoid nonce collisions."""
+        web3 = self._get_web3()
+        if web3 is None:
+            raise RuntimeError("Sepolia RPC is not configured.")
+        wallet = wallet_service.load_wallet()
+        if tx_lock.locked():
+            logger.info("%s Waiting for previous tx", LOG_PREFIX)
+        async with tx_lock:
+            logger.info("%s Sending tx serialized", LOG_PREFIX)
+            nonce = await asyncio.to_thread(
+                web3.eth.get_transaction_count,
+                wallet["address"],
+                "pending",
+            )
+            gas_price = int(await asyncio.to_thread(lambda: web3.eth.gas_price) * 1.15)
+            tx = await asyncio.to_thread(
+                build_tx,
+                {
+                    "from": wallet["address"],
+                    "nonce": nonce,
+                    "chainId": SEPOLIA_CHAIN_ID,
+                    "gas": 500000,
+                    "gasPrice": gas_price,
+                },
+            )
+            tx_hash = await asyncio.to_thread(self._send_transaction, tx)
+            await asyncio.sleep(0.5)
+            return tx_hash
+
+    def _schedule_write(self, coro: Any) -> None:
+        """Run or schedule an async onchain write without changing sync callers."""
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            asyncio.run(coro)
+            return
+        loop.create_task(coro)
+
+    async def register_agent(
+        self,
+        identity: Mapping[str, Any],
+        *,
+        force: bool = False,
+    ) -> str | None:
         """Register the agent onchain and return the shared registry agent id.
 
         The identity JSON keeps its local UUID-style `agent_id`. The contract-level
@@ -156,22 +191,30 @@ class ERC8004Service:
             logger.info("%s agentId = %s", LOG_PREFIX, existing_agent_id)
             return str(existing_agent_id)
 
+        local_agent_id = identity.get("agent_id")
+        if local_agent_id and not force:
+            logger.info("%s Agent already registered", LOG_PREFIX)
+            logger.info("%s agentId = %s", LOG_PREFIX, local_agent_id)
+            return None
+
         contract = self._contract(AGENT_REGISTRY_ADDRESS, AGENT_REGISTRY_ABI)
         web3 = self._get_web3()
         if contract is None or web3 is None:
             return None
 
         try:
-            tx = contract.functions.registerAgent(
+            register_call = contract.functions.registerAgent(
                 str(identity["agent_name"]),
                 web3.to_checksum_address(str(identity["wallet"])),
                 str(identity.get("description", "")),
-            ).build_transaction(self._build_base_tx(web3, AGENT_REGISTRY_ADDRESS))
-            tx_hash = self._send_transaction(tx)
+            )
+            tx_hash = await self._send_serialized_transaction(register_call.build_transaction)
             logger.info("%s AgentRegistry registerAgent submitted | tx=%s", LOG_PREFIX, tx_hash)
-            registry_agent_id = contract.functions.getAgentId(
-                web3.to_checksum_address(str(identity["wallet"]))
-            ).call()
+            registry_agent_id = await asyncio.to_thread(
+                lambda: contract.functions.getAgentId(
+                    web3.to_checksum_address(str(identity["wallet"]))
+                ).call()
+            )
             logger.info("%s Agent registered", LOG_PREFIX)
             logger.info("%s agentId = %s", LOG_PREFIX, registry_agent_id)
             return str(registry_agent_id)
@@ -179,7 +222,7 @@ class ERC8004Service:
             logger.warning("%s Agent registration failed: %s", LOG_PREFIX, exc)
             return None
 
-    def claim_allocation(self, agent_id: str | int) -> str | None:
+    async def claim_allocation(self, agent_id: str | int) -> str | None:
         """Claim the hackathon sandbox allocation for a registered agent."""
         contract = self._contract(HACKATHON_VAULT_ADDRESS, HACKATHON_VAULT_ABI)
         web3 = self._get_web3()
@@ -188,10 +231,8 @@ class ERC8004Service:
 
         try:
             logger.info("%s Claiming sandbox allocation", LOG_PREFIX)
-            tx = contract.functions.claimAllocation(int(agent_id)).build_transaction(
-                self._build_base_tx(web3, HACKATHON_VAULT_ADDRESS)
-            )
-            tx_hash = self._send_transaction(tx)
+            claim_call = contract.functions.claimAllocation(int(agent_id))
+            tx_hash = await self._send_serialized_transaction(claim_call.build_transaction)
             logger.info("%s Vault allocation successful", LOG_PREFIX)
             logger.info(
                 "%s HackathonVault claimAllocation submitted | agentId=%s tx=%s",
@@ -204,7 +245,7 @@ class ERC8004Service:
             logger.warning("%s Sandbox allocation claim failed: %s", LOG_PREFIX, exc)
             return None
 
-    def submit_trade_intent(self, intent: Mapping[str, Any], signature: str) -> str | None:
+    async def _submit_trade_intent(self, intent: Mapping[str, Any], signature: str) -> str | None:
         """Submit an existing EIP-712 trade intent to the RiskRouter contract."""
         contract = self._contract(RISK_ROUTER_ADDRESS, RISK_ROUTER_ABI)
         web3 = self._get_web3()
@@ -214,14 +255,14 @@ class ERC8004Service:
         try:
             logger.info("%s Submitting intent to RiskRouter", LOG_PREFIX)
             amount = int(round(float(intent["amount"]) * 1_000_000))
-            tx = contract.functions.submitIntent(
+            submit_call = contract.functions.submitIntent(
                 str(intent["asset"]),
                 str(intent["action"]),
                 amount,
                 int(intent["timestamp"]),
                 Web3.to_bytes(hexstr=signature),
-            ).build_transaction(self._build_base_tx(web3, RISK_ROUTER_ADDRESS))
-            tx_hash = self._send_transaction(tx)
+            )
+            tx_hash = await self._send_serialized_transaction(submit_call.build_transaction)
             logger.info("%s RiskRouter submission complete", LOG_PREFIX)
             logger.info(
                 "%s RiskRouter submitIntent submitted | asset=%s action=%s tx=%s",
@@ -235,7 +276,11 @@ class ERC8004Service:
             logger.warning("%s Trade intent submission failed: %s", LOG_PREFIX, exc)
             return None
 
-    def post_validation_checkpoint(self, artifact_hash: str) -> str | None:
+    def submit_trade_intent(self, intent: Mapping[str, Any], signature: str) -> None:
+        """Schedule submission of an existing EIP-712 trade intent to RiskRouter."""
+        self._schedule_write(self._submit_trade_intent(intent, signature))
+
+    async def _post_validation_checkpoint(self, artifact_hash: str) -> str | None:
         """Publish a validation artifact hash to the ValidationRegistry contract."""
         contract = self._contract(VALIDATION_REGISTRY_ADDRESS, VALIDATION_REGISTRY_ABI)
         web3 = self._get_web3()
@@ -244,10 +289,12 @@ class ERC8004Service:
 
         try:
             logger.info("%s Posting validation checkpoint", LOG_PREFIX)
-            tx = contract.functions.postCheckpoint(
+            checkpoint_call = contract.functions.postCheckpoint(
                 Web3.to_bytes(hexstr=artifact_hash)
-            ).build_transaction(self._build_base_tx(web3, VALIDATION_REGISTRY_ADDRESS))
-            tx_hash = self._send_transaction(tx)
+            )
+            tx_hash = await self._send_serialized_transaction(
+                checkpoint_call.build_transaction
+            )
             logger.info("%s Validation checkpoint submitted", LOG_PREFIX)
             logger.info(
                 "%s ValidationRegistry checkpoint submitted | hash=%s tx=%s",
@@ -259,6 +306,10 @@ class ERC8004Service:
         except Exception as exc:  # noqa: BLE001
             logger.warning("%s Validation checkpoint submission failed: %s", LOG_PREFIX, exc)
             return None
+
+    def post_validation_checkpoint(self, artifact_hash: str) -> None:
+        """Schedule publishing of a validation artifact hash to the ValidationRegistry."""
+        self._schedule_write(self._post_validation_checkpoint(artifact_hash))
 
 
 erc8004_service = ERC8004Service()

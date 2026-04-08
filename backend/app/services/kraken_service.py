@@ -12,6 +12,7 @@ Important:
 
 from __future__ import annotations
 
+import asyncio
 import json
 import subprocess
 from typing import Any
@@ -45,6 +46,7 @@ class KrakenService:
     }
     _rest_ticker_url = "https://api.kraken.com/0/public/Ticker"
     _rest_ohlc_url = "https://api.kraken.com/0/public/OHLC"
+
     def _resolve_pair(self, asset: str) -> tuple[str, str]:
         """Map a CoinGecko-style asset id to CLI and REST Kraken pairs."""
         normalized = asset.strip().lower()
@@ -144,26 +146,26 @@ class KrakenService:
         if not isinstance(ticker, dict):
             raise KrakenCLIError(f"Unexpected ticker payload for {pair}.")
 
-        price = None
-        for key in ("last", "close", "price", "c"):
-            price = self._coerce_float(ticker.get(key))
-            if price is not None:
-                break
-        if price is None:
+        last_price = self._coerce_float(ticker.get("c"))
+        if last_price is None:
+            for key in ("last", "close", "price"):
+                last_price = self._coerce_float(ticker.get(key))
+                if last_price is not None:
+                    break
+        if last_price is None:
             raise KrakenCLIError(f"Unable to parse Kraken price for {pair}.")
 
+        open_price = self._coerce_float(ticker.get("o"))
         change_24h = None
-        for key in ("change_24h", "change", "p"):
-            change_24h = self._coerce_float(ticker.get(key))
-            if change_24h is not None:
-                break
+        if open_price and open_price > 0:
+            change_24h = ((last_price - open_price) / open_price) * 100
 
         logger.info("Kraken price fetched | asset=%s pair=%s", asset, pair)
         print("Kraken price fetched")
         return {
             "asset": asset.strip().lower(),
             "pair": pair,
-            "price_usd": price,
+            "price_usd": last_price,
             "change_24h": change_24h,
             "market_cap": None,
         }
@@ -301,8 +303,5 @@ def kraken_available() -> bool:
 def kraken_cli_available() -> bool:
     """Return True when Kraken CLI is installed and runnable."""
     return kraken_service.kraken_cli_available()
-
-
-import asyncio
 
 kraken_service = KrakenService()

@@ -23,14 +23,17 @@ class TrendAgent:
         self, asset: str, price: float, change_24h: float, rsi: float, ma20: float
     ) -> AgentSignal:
         """Return a trend-based action."""
-        if price > ma20:
+        upper_band = ma20 * 1.002
+        lower_band = ma20 * 0.998
+
+        if price > upper_band:
             action = TradingDecision.BUY
             confidence = 0.68
-            reason = f"{asset} is trading above MA20, so the trend remains constructive."
-        elif price < ma20:
+            reason = f"{asset} is trading more than 0.2% above MA20, so the trend remains constructive."
+        elif price < lower_band:
             action = TradingDecision.SELL
             confidence = 0.68
-            reason = f"{asset} is trading below MA20, so the trend remains weak."
+            reason = f"{asset} is trading more than 0.2% below MA20, so the trend remains weak."
         else:
             action = TradingDecision.HOLD
             confidence = 0.56

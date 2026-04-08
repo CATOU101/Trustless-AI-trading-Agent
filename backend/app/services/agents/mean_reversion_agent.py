@@ -23,14 +23,14 @@ class MeanReversionAgent:
         self, asset: str, price: float, change_24h: float, rsi: float, ma20: float
     ) -> AgentSignal:
         """Return a mean-reversion action."""
-        if rsi < 30:
+        if rsi < 40:
             action = TradingDecision.BUY
             confidence = 0.76
-            reason = f"{asset} is oversold with RSI below 30, which supports a rebound setup."
-        elif rsi > 70:
+            reason = f"{asset} is leaning oversold with RSI below 40, which supports a rebound setup."
+        elif rsi > 60:
             action = TradingDecision.SELL
             confidence = 0.76
-            reason = f"{asset} is overbought with RSI above 70, which supports mean reversion lower."
+            reason = f"{asset} is overbought with RSI above 60, which supports mean reversion lower."
         else:
             action = TradingDecision.HOLD
             confidence = 0.57

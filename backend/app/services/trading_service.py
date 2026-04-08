@@ -145,6 +145,16 @@ class TradingService:
             agent=agent,
             wallet=wallet_address,
         )
+        logger.info(
+            "Intent created: asset=%s action=%s amount=%s agent=%s",
+            intent["asset"],
+            intent["action"],
+            intent["amount"],
+            agent,
+        )
+        print(
+            f"Intent created: asset={intent['asset']} action={intent['action']} amount={intent['amount']}"
+        )
         signature = intent_service.sign_intent(intent)
         if not intent_service.verify_signature(intent, signature):
             raise ValueError("Trade intent signature verification failed.")
@@ -169,24 +179,39 @@ class TradingService:
         execution_price = price
         sandbox_execution = None
         if kraken_cli_available():
-            logger.info("Using Kraken CLI execution | asset=%s action=%s", normalized_asset, normalized_decision)
-            print("Using Kraken CLI execution")
-            kraken_execution = kraken_service.execute_kraken_trade(
-                normalized_asset,
-                normalized_decision,
-                intended_amount,
-            )
-            execution_source = "kraken"
-            execution_price = (
-                kraken_service.extract_execution_price(kraken_execution) or price
-            )
+            try:
+                logger.info(
+                    "Execution path: Kraken | asset=%s action=%s",
+                    normalized_asset,
+                    normalized_decision,
+                )
+                print("Execution path: Kraken")
+                kraken_execution = kraken_service.execute_kraken_trade(
+                    normalized_asset,
+                    normalized_decision,
+                    intended_amount,
+                )
+                execution_source = "kraken"
+                execution_price = (
+                    kraken_service.extract_execution_price(kraken_execution) or price
+                )
+            except Exception as exc:  # noqa: BLE001
+                logger.warning(
+                    "Execution failed, fallback to sandbox | asset=%s action=%s error=%s",
+                    normalized_asset,
+                    normalized_decision,
+                    exc,
+                )
+                print("Execution failed, fallback to sandbox")
+                execution_source = "sandbox"
+                sandbox_execution = dex_service.simulate_swap(intent)
         else:
             logger.info(
-                "Kraken CLI unavailable, using sandbox execution | asset=%s action=%s",
+                "Execution path: Sandbox | asset=%s action=%s",
                 normalized_asset,
                 normalized_decision,
             )
-            print("Kraken CLI unavailable, using sandbox execution")
+            print("Execution path: Sandbox")
             sandbox_execution = dex_service.simulate_swap(intent)
 
         if normalized_decision == "BUY":
