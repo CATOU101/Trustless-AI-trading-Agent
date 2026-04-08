@@ -1,6 +1,8 @@
 """FastAPI application entrypoint."""
 
 import asyncio
+import shutil
+import subprocess
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -34,6 +36,20 @@ app.add_middleware(
 )
 
 
+def start_ollama() -> None:
+    """Best-effort background start for Ollama when available locally."""
+    if shutil.which("ollama") is None:
+        return
+    try:
+        subprocess.Popen(
+            ["ollama", "serve"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    except Exception:
+        pass
+
+
 @app.get("/health", tags=["health"])
 async def health_check() -> dict[str, str]:
     """Return health status for uptime checks."""
@@ -43,6 +59,7 @@ async def health_check() -> dict[str, str]:
 @app.on_event("startup")
 async def start_agent_loop() -> None:
     """Start the autonomous agent loop when the API boots."""
+    start_ollama()
     identity_path = identity_service._identity_path
     existed = identity_path.exists()
     identity = identity_service.load_identity()
