@@ -1,6 +1,36 @@
 """Application settings and environment configuration."""
 
+from __future__ import annotations
+
+import os
+from pathlib import Path
+
 from pydantic import BaseModel, Field
+
+
+def _load_env_file() -> None:
+    """Load simple KEY=VALUE pairs from backend/.env into the process env.
+
+    This keeps configuration lightweight without introducing another settings
+    dependency. Existing environment variables always win over values in the file.
+    """
+
+    env_path = Path(__file__).resolve().parents[2] / ".env"
+    if not env_path.exists():
+        return
+
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip("'").strip('"')
+        if key:
+            os.environ.setdefault(key, value)
+
+
+_load_env_file()
 
 
 class AppSettings(BaseModel):
@@ -9,6 +39,8 @@ class AppSettings(BaseModel):
     app_name: str = Field(default="AutoHedge AI")
     app_version: str = Field(default="0.1.0")
     debug: bool = Field(default=False)
+    sepolia_rpc_url: str | None = Field(default=os.getenv("SEPOLIA_RPC_URL"))
+    agent_private_key: str | None = Field(default=os.getenv("AGENT_PRIVATE_KEY"))
 
 
 settings = AppSettings()

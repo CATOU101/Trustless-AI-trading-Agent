@@ -28,6 +28,8 @@ class AgentIdentity(TypedDict):
     capabilities: list[str]
     endpoints: dict[str, str]
     artifact_endpoint: str
+    registry_agent_id: str | None
+    allocation_claimed: bool
 
 
 class IdentityService:
@@ -57,6 +59,8 @@ class IdentityService:
                 "artifacts": "/agent/artifacts",
             },
             "artifact_endpoint": "/agent/artifacts",
+            "registry_agent_id": None,
+            "allocation_claimed": False,
         }
         self._identity_path.write_text(
             json.dumps(identity, indent=2),
@@ -109,6 +113,12 @@ class IdentityService:
             "artifact_endpoint": str(
                 payload.get("artifact_endpoint", "/agent/artifacts")
             ),
+            "registry_agent_id": (
+                None
+                if payload.get("registry_agent_id") in {None, ""}
+                else str(payload.get("registry_agent_id"))
+            ),
+            "allocation_claimed": bool(payload.get("allocation_claimed", False)),
         }
         self._identity = identity
 
@@ -120,6 +130,8 @@ class IdentityService:
             or "capabilities" not in payload
             or "endpoints" not in payload
             or "artifact_endpoint" not in payload
+            or "registry_agent_id" not in payload
+            or "allocation_claimed" not in payload
         )
         if needs_persist:
             self._identity_path.write_text(
@@ -134,6 +146,15 @@ class IdentityService:
     def get_identity(self) -> AgentIdentity:
         """Return the current agent identity."""
         return self.load_identity()
+
+    def persist_identity(self, identity: AgentIdentity) -> AgentIdentity:
+        """Persist an updated identity document to disk and cache."""
+        self._identity_path.write_text(
+            json.dumps(identity, indent=2),
+            encoding="utf-8",
+        )
+        self._identity = identity
+        return identity
 
 
 identity_service = IdentityService()

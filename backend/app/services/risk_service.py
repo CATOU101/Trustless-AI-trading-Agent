@@ -42,11 +42,11 @@ class RiskService:
 
         if last_trade_timestamp:
             last_trade_time = datetime.fromisoformat(last_trade_timestamp)
-            if datetime.now(UTC) - last_trade_time < timedelta(minutes=5):
+            if datetime.now(UTC) - last_trade_time < timedelta(minutes=1):
                 return {
                     "allowed": False,
                     "adjusted_position_size": 0.0,
-                    "reason": "Trading blocked to avoid repeated trades within 5 minutes.",
+                    "reason": "Trading blocked to avoid repeated trades within 1 minute.",
                 }
 
         return {

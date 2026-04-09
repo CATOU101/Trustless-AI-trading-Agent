@@ -20,7 +20,7 @@ import {
   getTradeHistory
 } from "./services/api";
 
-const DEFAULT_ASSET = "bitcoin";
+const DEFAULT_ASSET = "ethereum";
 
 export default function App() {
   const [decisionData, setDecisionData] = useState(null);
@@ -31,6 +31,7 @@ export default function App() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [identityData, setIdentityData] = useState(null);
   const [artifactsData, setArtifactsData] = useState([]);
+  const [countdown, setCountdown] = useState(60);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const requestInFlightRef = useRef(false);
@@ -73,6 +74,7 @@ export default function App() {
     } catch (err) {
       setError(err.message || "Failed to fetch dashboard data.");
     } finally {
+      setCountdown(60);
       requestInFlightRef.current = false;
       setLoading(false);
     }
@@ -80,7 +82,19 @@ export default function App() {
 
   useEffect(() => {
     refreshDashboard();
-    const intervalId = setInterval(refreshDashboard, 60000);
+  }, [refreshDashboard]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          refreshDashboard();
+          return 60;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
     return () => clearInterval(intervalId);
   }, [refreshDashboard]);
 
@@ -88,14 +102,6 @@ export default function App() {
     () => decisionData?.asset || votesData?.asset || DEFAULT_ASSET,
     [decisionData, votesData]
   );
-  const latestTradeIntentArtifact = useMemo(() => {
-    if (!Array.isArray(artifactsData) || artifactsData.length === 0) return null;
-    for (let i = artifactsData.length - 1; i >= 0; i -= 1) {
-      if (artifactsData[i]?.type === "trade_intent") return artifactsData[i];
-    }
-    return null;
-  }, [artifactsData]);
-
   const status = {
     running: !error,
     asset: currentAsset,
@@ -114,6 +120,9 @@ export default function App() {
           <p className="text-slate-600 mt-1">
             Read-only dashboard for the backend trading system
           </p>
+          <div className={countdown < 10 ? "text-sm text-red-500 mt-2" : "text-sm text-slate-500 mt-2"}>
+            Next decision in: <span className="font-semibold">{countdown}s</span>
+          </div>
         </header>
 
         {error ? <p className="text-sm text-red-600">{error}</p> : null}
@@ -132,7 +141,8 @@ export default function App() {
             asset={currentAsset}
           />
           <IntentCard
-            artifact={latestTradeIntentArtifact}
+            artifacts={artifactsData}
+            currentAsset={currentAsset}
             chainIdFallback={identityData?.chain_id}
           />
         </section>

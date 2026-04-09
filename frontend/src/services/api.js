@@ -24,8 +24,10 @@ export async function getAgentDecision(coin) {
   return parseResponse(response);
 }
 
-export async function getLatestDecision(asset = "bitcoin") {
-  const response = await fetch(`${BASE_URL}/agent/decision`);
+export async function getLatestDecision(asset = "ethereum") {
+  const response = await fetch(
+    `${BASE_URL}/agent/decision?coin=${encodeURIComponent(asset)}`
+  );
   if (response.ok) {
     return parseResponse(response);
   }

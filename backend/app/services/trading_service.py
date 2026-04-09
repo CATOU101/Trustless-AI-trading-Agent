@@ -124,27 +124,36 @@ class TradingService:
             asset=normalized_asset, price=price
         )["portfolio_value"]
 
-        if normalized_decision == "HOLD":
-            return self.get_portfolio()
-        if normalized_decision not in {"BUY", "SELL"}:
+        if normalized_decision not in {"BUY", "SELL", "HOLD"}:
             raise ValueError("Decision must be BUY, SELL, or HOLD.")
 
         wallet_address = wallet_service.get_wallet_address()
         if normalized_decision == "BUY":
             intended_amount = self._portfolio["cash_balance"] * position_size
-        else:
+        elif normalized_decision == "SELL":
             held_quantity = self._portfolio["assets"][normalized_asset]
             intended_amount = held_quantity * position_size
+        else:
+            intended_amount = 0.0
 
-        if intended_amount <= 0:
-            return self.get_portfolio()
-
-        intent = intent_service.create_intent(
+        intent = intent_service.create_trade_intent(
+            decision={
+                "asset": self._resolve_asset_symbol(normalized_asset),
+                "final_action": normalized_decision,
+            },
+            amount=intended_amount,
             agent=agent,
             wallet=wallet_address,
-            asset=self._resolve_asset_symbol(normalized_asset),
-            action=normalized_decision,
-            amount=intended_amount,
+        )
+        logger.info(
+            "Intent created: asset=%s action=%s amount=%s agent=%s",
+            intent["asset"],
+            intent["action"],
+            intent["amount"],
+            agent,
+        )
+        print(
+            f"Intent created: asset={intent['asset']} action={intent['action']} amount={intent['amount']}"
         )
         signature = intent_service.sign_intent(intent)
         if not intent_service.verify_signature(intent, signature):
@@ -160,28 +169,49 @@ class TradingService:
             },
         )
 
+        if normalized_decision == "HOLD":
+            return self.get_portfolio()
+
+        if intended_amount <= 0:
+            return self.get_portfolio()
+
         execution_source = "sandbox"
         execution_price = price
         sandbox_execution = None
         if kraken_cli_available():
-            logger.info("Using Kraken CLI execution | asset=%s action=%s", normalized_asset, normalized_decision)
-            print("Using Kraken CLI execution")
-            kraken_execution = kraken_service.execute_kraken_trade(
-                normalized_asset,
-                normalized_decision,
-                intended_amount,
-            )
-            execution_source = "kraken"
-            execution_price = (
-                kraken_service.extract_execution_price(kraken_execution) or price
-            )
+            try:
+                logger.info(
+                    "Execution path: Kraken | asset=%s action=%s",
+                    normalized_asset,
+                    normalized_decision,
+                )
+                print("Execution path: Kraken")
+                kraken_execution = kraken_service.execute_kraken_trade(
+                    normalized_asset,
+                    normalized_decision,
+                    intended_amount,
+                )
+                execution_source = "kraken"
+                execution_price = (
+                    kraken_service.extract_execution_price(kraken_execution) or price
+                )
+            except Exception as exc:  # noqa: BLE001
+                logger.warning(
+                    "Execution failed, fallback to sandbox | asset=%s action=%s error=%s",
+                    normalized_asset,
+                    normalized_decision,
+                    exc,
+                )
+                print("Execution failed, fallback to sandbox")
+                execution_source = "sandbox"
+                sandbox_execution = dex_service.simulate_swap(intent)
         else:
             logger.info(
-                "Kraken CLI unavailable, using sandbox execution | asset=%s action=%s",
+                "Execution path: Sandbox | asset=%s action=%s",
                 normalized_asset,
                 normalized_decision,
             )
-            print("Kraken CLI unavailable, using sandbox execution")
+            print("Execution path: Sandbox")
             sandbox_execution = dex_service.simulate_swap(intent)
 
         if normalized_decision == "BUY":

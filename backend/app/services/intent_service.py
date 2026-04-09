@@ -7,6 +7,7 @@ from typing import Any, TypedDict
 from eth_account import Account
 from eth_account.messages import encode_defunct, encode_typed_data
 
+from app.services.erc8004_service import erc8004_service
 from app.services.wallet_service import wallet_service
 from app.utils.logger import get_logger
 
@@ -85,6 +86,28 @@ class IntentService:
         )
         return intent
 
+    def create_trade_intent(
+        self,
+        decision: dict[str, Any],
+        amount: float,
+        agent: str,
+        wallet: str,
+    ) -> TradeIntent:
+        """Construct a trade intent directly from a decision payload.
+
+        The asset is taken from the decision itself so the EIP-712 message stays
+        aligned with the latest analyzed asset. No fallback asset is applied.
+        """
+        asset = str(decision["asset"]).strip()
+        action = str(decision["final_action"]).strip()
+        return self.create_intent(
+            agent=agent,
+            wallet=wallet,
+            asset=asset,
+            action=action,
+            amount=amount,
+        )
+
     def sign_intent(self, intent: TradeIntent) -> str:
         """Sign a trade intent using EIP-712 typed data."""
         payload = self._build_eip712_payload(intent)
@@ -97,6 +120,7 @@ class IntentService:
         signed = Account.sign_message(signable, private_key=wallet["private_key"])
         signature = signed.signature.hex()
         logger.info("Intent signed | wallet=%s", intent["wallet"])
+        erc8004_service.submit_trade_intent(intent, signature)
         return signature
 
     def verify_signature(self, intent: TradeIntent, signature: str) -> bool:

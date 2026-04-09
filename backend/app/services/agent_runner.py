@@ -14,9 +14,7 @@ from app.services.risk_service import risk_service
 from app.services.trading_service import enforce_position_rules, trading_service
 
 ASSETS = [
-    "bitcoin",
     "ethereum",
-    "solana",
 ]
 
 

@@ -16,5 +16,7 @@
     "decision": "/agent/decision",
     "artifacts": "/agent/artifacts"
   },
-  "artifact_endpoint": "/agent/artifacts"
+  "artifact_endpoint": "/agent/artifacts",
+  "registry_agent_id": null,
+  "allocation_claimed": false
 }
