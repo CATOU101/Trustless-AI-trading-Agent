@@ -17995,5 +17995,1805 @@
       "execution_price": 2201.38,
       "portfolio_value": 8472.850464
     }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:37:58.203532+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xae58fa41c043d22783f54e2712369f2454fe58c72b36e52d8ad9e162a79c425f",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:37:58.221256+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x058211ea66c7da012d33c18ca76371d0a3c211e931647e79ccf59684a1849a9f",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:38:41.747837+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x02fd005db816e2550a2caf04ae73cae00464fbf8997c33454ff7257c97a31dfb",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:38:41.756905+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xe3a939588a8549a4f2325b8597de8e8a7640a15cdfc2bac54df1a5bcc5a0b0e7",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:39:06.995472+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0ce1fbc9d496c806dbdd269c3bd50ea25cd2d8ebc9e089d95f454e426558955d",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:39:07.007887+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x79aae60d35608df1545c4013214dd4811757ac8ae9e68315dcb5858daf1a5724",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:39:45.756578+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x21381d5200c6e662f8f6531bf77f48ec0de52dc873425fe01836ba6a61906717",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:39:45.782570+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x7bd1e31b19c32776291387f5593461727099748817453165731083779a8380d9",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:40:12.453451+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xb4fe231796c5d7ea63f4e9e7aebafb4b75c60c2f74c946a17914d165d9ffb8d8",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:40:12.476738+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x08b44a585c6768642dafc86ce698b533e9c95bd43b47d2c3dbfa8118e924d21d",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:40:49.753940+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x8d7f6c6cdabab350517895364c02d00966a1ffed01ff52c169207802cc5264e1",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:40:49.778063+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x3dcacf75e06bba9919a6d1106d8cc3a0088c9c35804191d47442f034444d9827",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:41:17.360962+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd394e1e190c612797325dfa78ef63a9d8f8658cf36d43056fa61a3b233433869",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:41:17.382775+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xcd1ec8928b69df7e905f16ca5b56546d85a8b29adecb15cba665f3278e424035",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:41:53.758825+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xb57e03c447b43ea2bd7e3b5dae99dd95f1dc7f24aad5f47e41b590eec7c024de",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:41:53.780510+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x3ef82be077d99e415b174c5baf5f5d727f3c1c7a24269b9552bc1c17e4d1d712",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:42:22.153804+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x2525cee61826b3bb7f00335bbe637a41bf54a99a0fe738d7cb25e61f310f2d4d",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:42:22.174457+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x4f5970814983eb4efcba907ee5efb7147683e9ada59c01742f037a9b9cc132f0",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:42:57.759071+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x8fe9f54313dbbc3e89556c19ade9b8689f1452faac2a4f161d4f96189d338f33",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:42:57.781781+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x5c2a4a153a279d9e75c821327888b0cde66adb6721af020a10641038f31847a8",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:43:26.794446+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0646322398069a0666220967f8b0ec956969c6ebdf6379aa8d683709c0a7cf38",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:43:26.815172+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x4690f5496bdd1ba912e3aa61487eb9ed88d7f8a11233cf08bb953f4a1eac0d4c",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:44:01.951955+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0267c8eef70f9f63becac51695a3dbf94941f1aac51204c40f3b740b1eef0264",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:44:01.975022+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x912c3c02b2222b3026332abe91c1e06be3e539e9a389bc9387ba9ab0d50c1777",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:44:32.126260+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x38f7e5d1df555d4994a8b8ecb9de42a633223fbd60628fcb8d72bc43b3247c85",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:44:32.151556+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xbd7bc717247314a9ebdf46d7394ef8c2b64efed88b462c64ccde8234ccf8f5e2",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:45:08.769021+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x4d29e2a01ab68d52c71707447d8e8fe2e908229c2a80fead626caa0b1a37d5f9",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:45:08.792214+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9fb24cb4ad2d5b365b8d8c2e0be893199a91fb2a2def7a3f53463363162abc65",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:45:38.278896+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xadd3b19879a1290780d3b95b1dbb889c8ac2a35ba84f5453ff6a825a9ed9909a",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:45:38.302121+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xc900239500c9acd49933a227f586bf9a87299eccdf1b2816c4f189d10993437b",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:46:13.951582+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd526d3198d74c7c91b2f13607af944627af5596dae3a171847e9dbec016f7d57",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:46:13.981701+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x47b344c21802aeff15c881f097036e27a8bae1210ce8156ae709bb9063b74a5c",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:46:43.100826+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x4808d2ab78a79e8b7fa18f7e850c8ad7d5806d6a57fa5f84095edf75f9046544",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:46:43.124494+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x1189aa5c13c3b5a8fd348a7d01c325da6a8dd264bd7ebbd739981a9b8197306e",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:47:17.768517+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xa0a25d24c4c8f7dd1346e8dbb44414128ca50aba3d586c8a7fa46ea1fdbbe7b0",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:47:17.792962+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xcac8f0a2f0e6ca3617a3fdb7ced106d74ad30c47ab23df839225dfe45b985389",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:47:48.682877+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0072ebef94c2cee666409162444bb8e3720f3e091b052f232bd048aa89d23a27",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:47:48.707750+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x8916a25840a37e3b91d5918b242bb2b806ed96e7fbf558cc69b250afe32cdd15",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:48:20.767834+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x4d0fbd0819c36b29d5012ab57726a5484ab291ebb7dcdd8d3399fd89c08cd038",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:48:20.791487+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x969c681efb25da896307cb8da8c92818b46bdf142020d84c6934995a6512d546",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:48:53.548637+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x175d87b94538e5c248ed88cc9ea9352e29251ddc9cb14bded6c781615aa75485",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:48:53.573289+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x55ac93a33e381cf80a622b7d82409069938d6de577ca5c4aac82b38cfc271547",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:49:24.957088+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xa3bb19a0c53e06d3bba753cfe241ea55e9e83f91381e83a8207b1ffaba79526e",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:49:24.981659+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x128eaff7b8794cccb3d9255d4631f0484229675b58b04591d08bd4a5300f7662",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:49:59.116287+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x7283c077954e4078c92cb6580d5a9fc4b4e524116726d7ad426a571225e372c0",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:49:59.140244+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x13573c42ad64f94e4dac6bf4ef7fd838646890add1e3d9ad3e28670c9c7832f3",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:51:04.914409+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x86af219021c77cfb30526d47e869d283f5257bb81241bb9e4d6e929def94da15",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:51:04.938059+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x29fc3c324675b60f126a7856a973d8c4493d301de667a1b34c99643f7596d373",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:52:09.141504+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xb9bfff65606a04b188e3f83754c0435e5393709f7d227e7207e5f72a1c9798f4",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:52:09.164859+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xfa1002f976acf935bf75e70002270e6a91796545d6ccf7d36603a8364b56a3d0",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:53:13.955076+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x0e6203492bfb6e47aa6de8206e3c9b56ea85259053e056cb23a2402adab02fdd",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:53:13.981131+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xb6f7ddfbf2837e0155ac4b5f5a43725664831449120cbda7634fb44969ca3111",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:54:20.113155+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9dd91ce69c88ad89cf69747364d137c8de36b43f7577ff30efc211a3533207f9",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:54:20.137880+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x735ba5f4b94e18c65fd20d6d504d39c489416762baa7bbe4f8da727ffa6ac1f4",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:55:25.032413+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x121b86fd707289abcd942332c7159bb5ccd41a009c5fd6f10195648bb83c7cb4",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:55:25.059018+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xcd1b52f268339adebd402f4834e25cee9a9657af3b46cdfb763141c7d8b092ec",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:56:29.864125+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x7a37681cb8ea11ed313328b103b85bf448c36834eb149e558b0bb530b88acdbc",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:56:29.890718+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xb40c8037fb7bd89095916b12f82ac759719e057e165635eb8f4ff72b1603aaf4",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:57:35.803108+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xed557eac9aba6648bc1627463d4237d3df786a04760ad31eeac7ffb5f9116048",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:57:35.827716+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x122d9ed7b50f9318f0895e0b4c88599ea22ed642bd2589fb75ef6b9df6665a22",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:58:41.752138+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd64664325b062361fa6ae9d138c392cdae0782cb272314bdc800bf4db14974db",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:58:41.775540+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xc860764031bbc2a0f1dd8f330350b9ec512113333dd638d0337d2db00eed9ac8",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:59:46.666862+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x543cc3ca40e660764f38a6ac1587fda3c5810c4d2f78ef6ebf51d57df29c9d8b",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T15:59:46.685877+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x3f10fe1e8a40c38bdbc34c00624e7f5684ad765af094cef338c3de2611dea87d",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:00:52.306869+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xda39a4626df6a82925cdcf4ceed301531bb16890ea3632f6f0782c2a026e299f",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:00:52.332507+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xf8f54ddc7e3bd626bdbb0f3b3a865a2aa990ff29209755850569dd0fd6a20d59",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:01:58.149481+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x8951b5e430167e6e1b27a7befec1ad3caf12ce74256a786c7f78eec38e1bcac7",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:01:58.173808+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xc396d06a0152075f7d302840e5ebb251c60130191b953660b5451842d25e54c4",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:03:03.584466+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xe0f2287df866683e6d6c89c816582abbc98d4a4d1b4cd6003e90f322540dc5e5",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:03:03.609393+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xa044a867b48a75c472aa7f8f4cdb113d2edb096f6388c1118ce797d9678c950c",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:03:50.937350+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x431930df356d699c6cdb1e04d4bdf370d3ba4a3c5845dfba5a28ce4d471b12ec",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:03:50.958366+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xd08136d9d25dfe6423fb4a01803f9c92f1bfe7263bb0fe9d385183fb474810c7",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:04:08.395898+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x7a84bc81d983004bf15acdd0fad1bdc30968e2f74788d79d9ed45d240ced9ec6",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:04:08.422893+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x9523ec6d6d0ca59ac9be5e74f5d01a6bf75fcaf918260541b2d9e41a3ba6a56b",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:04:54.966655+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xa73304de87e0e67040c4b90c5b456df14598ab30cd4272dd7497dec147c35824",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:04:54.990742+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x53f4355116cb6124f13fce16bc410cc8de9b33be178f7fa13239055bb67f6c8b",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:05:13.523411+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0xf367957d629d2a5c40a003285ad383f10be7fbd1b9a17e97d9a2eda43b619b1f",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:05:13.550506+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x65c348a85a84439de16b5cc5d5eaaba3889eef695bea914faa59c4714a1bdf83",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
+  },
+  {
+    "type": "strategy_decision",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:05:59.969485+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x17f27f6b30360ae8d5ac5e75595c57fa207cd0050bb739c9192d8a86ea052998",
+    "metadata": {
+      "agent_votes": [
+        {
+          "agent": "MomentumAgent",
+          "action": "HOLD",
+          "confidence": 0.58,
+          "reason": "ethereum momentum setup is mixed, so there is no clean momentum trade."
+        },
+        {
+          "agent": "MeanReversionAgent",
+          "action": "SELL",
+          "confidence": 0.76,
+          "reason": "ethereum is overbought with RSI above 60, which supports mean reversion lower."
+        },
+        {
+          "agent": "TrendAgent",
+          "action": "BUY",
+          "confidence": 0.68,
+          "reason": "ethereum is trading more than 0.2% above MA20, so the trend remains constructive."
+        }
+      ]
+    }
+  },
+  {
+    "type": "risk_check",
+    "asset": "ethereum",
+    "action": "HOLD",
+    "confidence": 0.67,
+    "timestamp": "2026-04-09T16:05:59.995140+00:00",
+    "validation_status": "verified",
+    "artifact_hash": "0x95ef204a5ee095a73fa3ebe6dfa5148b36c3e291b0f7fd667ef737a40e85e63e",
+    "metadata": {
+      "allowed": true,
+      "adjusted_position_size": 0.1,
+      "reason": "Risk checks passed."
+    }
   }
 ]
