@@ -115,18 +115,18 @@ Historical prices are used for:
 The backend uses three deterministic agents:
 
 `MomentumAgent`
-- BUY if `RSI < 40` and `price > MA20`
-- SELL if `RSI > 70`
+- BUY if `RSI < 45`
+- SELL if `RSI > 65`
 - else HOLD
 
 `MeanReversionAgent`
-- BUY if `RSI < 30`
-- SELL if `RSI > 70`
+- BUY if `RSI < 40`
+- SELL if `RSI > 60`
 - else HOLD
 
 `TrendAgent`
-- BUY if `price > MA20`
-- SELL if `price < MA20`
+- BUY if `price > MA20 * 1.002`
+- SELL if `price < MA20 * 0.998`
 - else HOLD
 
 ### Vote Aggregation
