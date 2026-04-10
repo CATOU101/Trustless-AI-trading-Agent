@@ -1,13 +1,19 @@
 # AutoHedge AI Frontend
 
+## Overview
 The AutoHedge AI frontend is a read-only React dashboard for monitoring the autonomous backend trading system.
 
-It does not trigger trading manually.
+It does not place trades directly. The backend owns all trading logic and runs the autonomous agent loop independently.
 
-The backend runs the agent automatically. The frontend only displays state and refreshes on a schedule.
+The dashboard is focused on visibility:
+- latest decision
+- signed intent visibility
+- identity data
+- artifact history
+- market indicators
+- portfolio state
 
 ## What The Dashboard Shows
-
 - agent status
 - latest decision
 - confidence
@@ -24,9 +30,9 @@ The backend runs the agent automatically. The frontend only displays state and r
 - artifact history
 
 ## Frontend Behavior
-
 The dashboard:
 - polls the backend every 60 seconds
+- shows a countdown to the next decision refresh
 - prevents overlapping requests
 - defaults to `ethereum` for live display
 - stays read-only with no coin selector or manual analyze button
@@ -38,7 +44,6 @@ API client:
 - [src/services/api.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/services/api.js)
 
 ## Components
-
 - [src/components/AgentStatusCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/AgentStatusCard.js)
 - [src/components/PortfolioCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/PortfolioCard.js)
 - [src/components/DecisionCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/DecisionCard.js)
@@ -51,11 +56,10 @@ API client:
 - [src/components/ArtifactCard.js](/Users/madhavan/.codex/worktrees/29fa/AI%20Trading%20agent/frontend/src/components/ArtifactCard.js)
 
 ## Backend Endpoints Used
-
-The frontend reads from these backend endpoints:
+The frontend reads from:
 - `GET /portfolio`
 - `GET /agent/decision`
-- `POST /agent/analyze` as fallback path in the client
+- `POST /agent/analyze` as client fallback
 - `GET /agents/decisions`
 - `GET /agents/leaderboard`
 - `GET /trades`
@@ -63,11 +67,14 @@ The frontend reads from these backend endpoints:
 - `GET /agent/identity`
 - `GET /agent/artifacts`
 
-Backend base URL expected by the frontend:
+Backend base URL used by the frontend code:
 - `http://localhost:8000`
 
-## Project Structure
+The backend CORS configuration allows both:
+- `http://localhost:3000`
+- `http://127.0.0.1:3000`
 
+## Project Structure
 ```text
 frontend/
 ├── public/
@@ -82,20 +89,18 @@ frontend/
 └── README.md
 ```
 
-## Run The Frontend
-
+## Running Locally
 ```bash
 cd frontend
 npm install
-npm start
+HOST=127.0.0.1 PORT=3000 npm start
 ```
 
 Frontend URL:
-- `http://localhost:3000`
+- `http://127.0.0.1:3000`
 
-## Development Notes
-
-- The frontend is intentionally simple and dashboard-oriented.
-- The backend owns all trading logic.
-- The UI is designed to surface system state, not to act as a trading terminal.
-- If the backend returns temporary fallbacks, the dashboard still renders safely.
+## Notes
+- the frontend is intentionally simple and dashboard-oriented
+- the backend owns all trading logic
+- the UI is designed to surface system state, not act as a trading terminal
+- if the backend returns temporary fallbacks, the dashboard still renders safely
