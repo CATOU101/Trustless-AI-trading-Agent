@@ -33,12 +33,21 @@ def _load_env_file() -> None:
 _load_env_file()
 
 
+def _env_bool(name: str, default: bool) -> bool:
+    """Parse a boolean environment flag with a safe default."""
+    raw = os.getenv(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
 class AppSettings(BaseModel):
     """Runtime settings for the AutoHedge AI backend."""
 
     app_name: str = Field(default="AutoHedge AI")
     app_version: str = Field(default="0.1.0")
     debug: bool = Field(default=False)
+    use_llm: bool = Field(default=_env_bool("USE_LLM", True))
     sepolia_rpc_url: str | None = Field(default=os.getenv("SEPOLIA_RPC_URL"))
     agent_private_key: str | None = Field(default=os.getenv("AGENT_PRIVATE_KEY"))
 
