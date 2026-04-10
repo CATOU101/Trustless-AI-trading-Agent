@@ -33,9 +33,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://127.0.0.1:3000",
-        "https://trustless-ai-trading-agent.vercel.app/",
-        "https://trustless-ai-trading-agent-git-main-catou101s-projects.vercel.app/",
-        "https://trustless-ai-trading-agent-pulntwa2s-catou101s-projects.vercel.app/"
+        "https://trustless-ai-trading-agent.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
