@@ -6,6 +6,7 @@ import subprocess
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 
 from app.config import settings
 from app.routes.agent import router as agent_router
@@ -57,6 +58,12 @@ def start_ollama() -> None:
 async def health_check() -> dict[str, str]:
     """Return health status for uptime checks."""
     return {"status": "ok"}
+
+
+@app.get("/", include_in_schema=False)
+async def root() -> RedirectResponse:
+    """Redirect the bare app URL to the interactive API docs."""
+    return RedirectResponse(url="/docs", status_code=307)
 
 
 @app.on_event("startup")
