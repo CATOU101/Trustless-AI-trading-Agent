@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://trustless-ai-trading-agent.onrender.com";
 
 async function parseResponse(response) {
   if (!response.ok) {
