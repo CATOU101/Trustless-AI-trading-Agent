@@ -80,7 +80,7 @@ class TradingService:
         """Initialize portfolio with default sandbox capital."""
         self._portfolio: PortfolioState = {
             "cash_balance": 10000.0,
-            "assets": {"bitcoin": 0.0},
+            "assets": {"ethereum": 0.0},
         }
         self._trade_history: list[TradeRecord] = []
         self._peak_portfolio_value = 10000.0
